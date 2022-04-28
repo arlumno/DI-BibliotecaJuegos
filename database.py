@@ -24,8 +24,8 @@ class Database():
             shutil.copy(sys._MEIPASS+'/'+self.fileDbEmpty, self.fileDb)
 
         self.db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
-        self.db.setDatabaseName(var.fileDb)
-        if not var.db.open():
+        self.db.setDatabaseName(self.fileDb)
+        if not self.db.open():
             QtWidgets.QMessageBox.critical(None, "No se puede abrir la base de datos",
                                            'No se puede establecer conexión.', QtWidgets.QMessageBox.Cancel)
             return False
@@ -39,27 +39,14 @@ class Database():
 
     def listadoJuegos(self):
         q = QtSql.QSqlQuery()
-        q.prepare( "SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo, envio, codigo FROM app")
+        q.prepare( "SELECT id, nombre, min_jugadores, max_jugadores FROM juegos")
         listado = []
         if q.exec_():
             while q.next():
-                juego = Juego()
-                listado.append(
-                    {"dni": q.value(0),
-                     "apellidos": q.value(1),
-                     "nombre": q.value(2),
-                     "direccion": q.value(3),
-                     "fecha_alta": q.value(4),
-                     "provincia": q.value(5),
-                     "forma_pago": q.value(6),
-                     "sexo": q.value(7),
-                     "envio": q.value(8),
-                     "codigo": q.value(9)
-                     }
-                )
+                juego = Juego(q.value(0), q.value(1),q.value(2),q.value(3) )
+                listado.append(juego)
         else:
-            print("Error al obtener lista de  clientes: ", q.lastError().text())
-        # print(listado)
+            print("Error al obtener listatado de juegos: ", q.lastError().text())
         return listado
 
 

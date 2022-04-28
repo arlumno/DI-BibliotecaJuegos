@@ -10,3 +10,16 @@ class Juego():
         self.fechaAlta = ""
         self.descripcion = ""
         self.observaciones = ""
+
+    def __str__(self):
+        text = str(self.id) + " - " \
+               + str(self.nombre) + " - "\
+               + str(self.minJugadores) + " - "\
+               + str(self.maxJugadores) + " - "\
+               + str(self.dificultad) + " - "\
+               + str(self.genero) + " - "\
+               + str(self.propietario) + " - "\
+               + str(self.fechaAlta) + " - "\
+               + str(self.descripcion) + "\n\t - "\
+               + str(self.observaciones) + "\n\t - "
+        return text

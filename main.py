@@ -17,9 +17,9 @@ class Main(QtWidgets.QMainWindow):
         var.dCalendar = DialogCalendar()
         var.dLog = DialogLog()
         var.dFileOpen = FileDialogAbrir()
-
         # var.dLog.show()
-        # database.Database.connect()
+        var.db.connect()
+        var.db.listadoJuegos()
 
         # Acciones.cargarProvincias()
         # Acciones.cargarEnvios()
@@ -81,6 +81,7 @@ class Main(QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
+    var.db = Database()
     app = QtWidgets.QApplication([])
     wMain = Main()
     wMain.show()

@@ -10,8 +10,8 @@ import var
 class Informes():
 
     def configReport():
-        var.configReport = {"rutaArchivoPdf" :'informes/listadoclientes.pdf',
-                            "directorioInformes": 'informes',
+        var.configReport = {"fileDb" :'informes/listadoclientes.pdf',
+                            "fileDbEmpty": 'informes',
                             "tituloInforme": "Listado de Clientes",
                             "autorInforme": "Armando Castro",
                             # "logoEmpresa": ".\\recursos\logo_ies_teis.jpg",
