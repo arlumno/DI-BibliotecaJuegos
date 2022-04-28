@@ -5,33 +5,79 @@ import tempfile
 
 from PyQt5 import QtWidgets, QtSql
 
-import acciones
-import tools
 import var
-from tools import Tools
+import Acciones
+from Juego import Juego
+from Herramientas import Herramientas
 
 
 class Database():
-    def connect():
-        if not os.path.isfile(var.fileDb):
-            tools.Tools.ventanaAdvertencia("No hay ninguna base de datos creada. \n Se procede a crear una nueva.","No Database")
-            shutil.copy(sys._MEIPASS+'/'+var.fileDbEmpty, var.fileDb)
+    fileDb = "app.db"
+    fileDbEmpty = "app.empty.db"
 
-        var.db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
-        var.db.setDatabaseName(var.fileDb)
+    def __init__(self):
+        self.db = None
+
+    def connect(self):
+        if not os.path.isfile(self.fileDb):
+            tools.Tools.ventanaAdvertencia("No hay ninguna base de datos creada. \n Se procede a crear una nueva.","No Database")
+            shutil.copy(sys._MEIPASS+'/'+self.fileDbEmpty, self.fileDb)
+
+        self.db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
+        self.db.setDatabaseName(var.fileDb)
         if not var.db.open():
-            QtWidgets.QMessageBox.critical(None, "No se puede abrir la base ded datos",
+            QtWidgets.QMessageBox.critical(None, "No se puede abrir la base de datos",
                                            'No se puede establecer conexión.', QtWidgets.QMessageBox.Cancel)
             return False
         else:
             print("Conexión realizada con éxito")
         return True
 
-    def disconnect():
-        var.db.close()
-        # del var.db
-        # QtSql.QSqlDatabase.removeDatabase(var.fileDb)
+    def disconnect(self):
+        self.db.close()
         print("Base de datos desconectada.")
+
+    def listadoJuegos(self):
+        q = QtSql.QSqlQuery()
+        q.prepare( "SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo, envio, codigo FROM app")
+        listado = []
+        if q.exec_():
+            while q.next():
+                juego = Juego()
+                listado.append(
+                    {"dni": q.value(0),
+                     "apellidos": q.value(1),
+                     "nombre": q.value(2),
+                     "direccion": q.value(3),
+                     "fecha_alta": q.value(4),
+                     "provincia": q.value(5),
+                     "forma_pago": q.value(6),
+                     "sexo": q.value(7),
+                     "envio": q.value(8),
+                     "codigo": q.value(9)
+                     }
+                )
+        else:
+            print("Error al obtener lista de  clientes: ", q.lastError().text())
+        # print(listado)
+        return listado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ******************************************************************************************************************************************************
 
     def guardarCliente(cliente):
         q = QtSql.QSqlQuery()
@@ -90,7 +136,7 @@ class Database():
             q.next()
             cliente = [q.value(0), q.value(1), q.value(2), q.value(3), q.value(5), q.value(6), q.value(7), q.value(4),
                        q.value(8)]
-            # acciones.Acciones.obtenerCliente(cliente)
+            # Acciones.Acciones.obtenerCliente(cliente)
             if cliente[0] is None:
                 cliente = None
         else:
@@ -100,7 +146,7 @@ class Database():
 
     def eliminarCliente(dni):
         q = QtSql.QSqlQuery()
-        if acciones.Acciones.isClientecargado():
+        if Acciones.Acciones.isClientecargado():
             Database.obtenerCliente(dni)
             q.prepare(
                 "DELETE FROM clientes "
@@ -156,7 +202,7 @@ class Database():
             "Importación completada.\n Clientes nuevos: " + str(clientesNuevos) + "\n clientes actualizados: " + str(
                 clientesActualizados))
 
-        acciones.Acciones.anunciarStatusBar("Importados " + str(len(listadoClientesImportar)) + " clientes")
+        Acciones.Acciones.anunciarStatusBar("Importados " + str(len(listadoClientesImportar)) + " clientes")
 
     def filtrarClientes(filtro):
         q = QtSql.QSqlQuery()

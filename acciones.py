@@ -6,9 +6,9 @@ import sys
 
 from PyQt5 import QtWidgets
 
-import database
 import var
-from tools import Tools
+from Database import Database
+from Herramientas import Herramientas
 
 
 class Acciones():

@@ -3,7 +3,7 @@ from datetime import datetime
 from PyQt5.QtWidgets import QMessageBox
 
 
-class Tools():
+class Herramientas():
     def fechaActual(format= "%d/%m/%Y"):
         fecha = datetime.today()
         fecha = fecha.strftime(format)

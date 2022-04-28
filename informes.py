@@ -2,8 +2,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import os
 
-import database
-import tools
+from Database import Database
+from Herramientas import Herramientas
 import var
 
 
@@ -31,7 +31,7 @@ class Informes():
             var.report.setFont('Helvetica-Bold', size=13)
             var.report.drawString(55,730, var.configReport['tituloInforme'])
 
-            listadoClientes = database.Database.obtenerListadoClientes()
+            listadoClientes = Database.obtenerListadoClientes()
 
             Informes.body(listadoClientes)
 
