@@ -63,16 +63,7 @@ class Acciones():
         except Exception as error:
             print("Error al seleccionar el pago: " + str(error))
 
-    def cargarProvincias():
-        try:
-            # provincias = ['','Pontevedra','Ourense','Lugo','A Coruña']
-            # He cargado una tabla de provincias en la base de datos.
-            database.Database.cargarProvincias()
 
-            for i in var.listadoProvincias:
-                var.menu.cbProvincia.addItem(i)
-        except Exception as error:
-            print("Error al cargar pronvincias: " + str(error))
 
     def selProvincia(prov):
         global provincia

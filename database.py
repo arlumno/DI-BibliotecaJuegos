@@ -7,7 +7,8 @@ from PyQt5 import QtWidgets, QtSql
 
 import var
 import Acciones
-from Juego import Juego
+from ClasesComponentes import *
+import Constructor
 from Herramientas import Herramientas
 
 
@@ -46,10 +47,32 @@ class Database():
                 juego = Juego(q.value(0), q.value(1),q.value(2),q.value(3) )
                 listado.append(juego)
         else:
-            print("Error al obtener listatado de juegos: ", q.lastError().text())
+            print("DB - Error al obtener listado de juegos: ", q.lastError().text())
         return listado
 
+    def listadoPropietarios(self):
+        q = QtSql.QSqlQuery()
+        q.prepare("SELECT id, nombre FROM propietarios")
+        listado = []
+        if q.exec_():
+            while q.next():
+                propietario = Propietario(q.value(0), q.value(1))
+                listado.append(propietario)
+        else:
+            print("DB - Error al obtener listado de propietarios: ", q.lastError().text())
+        return listado
 
+    def listadoDificultades(self):
+        q = QtSql.QSqlQuery()
+        q.prepare("SELECT id, dificultad FROM dificultad")
+        listado = []
+        if q.exec_():
+            while q.next():
+                dificultad = Dificultad(q.value(0), q.value(1))
+                listado.append(dificultad)
+        else:
+            print("DB - Error al obtener listado de dificultades: ", q.lastError().text())
+        return listado
 
 
 

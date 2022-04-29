@@ -21,3 +21,5 @@ listadoEnvios = []
 # *****************************
 
 global db
+global wMain
+wMain = None
