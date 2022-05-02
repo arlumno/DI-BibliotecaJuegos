@@ -2,7 +2,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import os
 
-from Database import Database
+from database import Database
 from Herramientas import Herramientas
 import var
 

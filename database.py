@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets, QtSql
 import var
 import Acciones
 from ClasesComponentes import *
-import Constructor
+import constructor
 from Herramientas import Herramientas
 
 
@@ -99,19 +99,54 @@ class Database():
             print("DB - Error al obtener listado de dificultades: ", q.lastError().text())
         return listado
 
-    def listadoJuegosFiltrado(self, filtros):
-
+    def listadoMinJugadores(self):
         q = QtSql.QSqlQuery()
+        q.prepare("SELECT distinct(min_jugadores) FROM juegos ORDER BY min_jugadores")
+        listado = []
+        if q.exec_():
+            while q.next():
+                listado.append(q.value(0))
+        else:
+            print("DB - Error al obtener listado de min jugadores: ", q.lastError().text())
 
-        q.prepare(self.consultaJuegos + " WHERE nombre LIKE :nombre")
+        return listado
 
+    def listadoMaxJugadores(self):
+        q = QtSql.QSqlQuery()
+        q.prepare("SELECT distinct(max_jugadores) FROM juegos ORDER BY max_jugadores")
+        listado = []
+        if q.exec_():
+            while q.next():
+                listado.append(q.value(0))
+        else:
+            print("DB - Error al obtener listado de max jugadores: ", q.lastError().text())
+        return listado
+
+    def listadoGeneros(self):
+        q = QtSql.QSqlQuery()
+        q.prepare("SELECT distinct(genero) FROM juegos ORDER BY genero")
+        listado = []
+        if q.exec_():
+            while q.next():
+                listado.append(q.value(0))
+        else:
+            print("DB - Error al obtener listado de generos: ", q.lastError().text())
+        return listado
+
+    def listadoJuegosFiltrado(self, filtros):
+        q = QtSql.QSqlQuery()
+        consulta = self.consultaJuegos + " WHERE nombre LIKE :nombre"
+        for i in filtros:
+            if not i == "nombre":
+                consulta = consulta + " AND " + i + " = '"+ filtros[i] +"'"
+        q.prepare(consulta)
         q.bindValue(":nombre", "%" + str(filtros["nombre"]) + "%")
-
         listado = []
         if q.exec_():
             listado = self.procesarConsultaJuegos(q)
         else:
-            print("Error al cargar clientes: ", q.lastError().text())
+            print("Error al cargar juegos filtrados: ", q.lastError().text())
+
         return listado
 
 

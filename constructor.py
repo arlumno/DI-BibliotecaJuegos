@@ -39,8 +39,11 @@ class Constructor():
                 row += 1
 
     def cargarFiltros():
-        Constructor.cargarFiltroPropietarios()
+        Constructor.cargarFiltroGenero()
         Constructor.cargarFiltroDificultades()
+        Constructor.cargarFiltroMinJugadores()
+        Constructor.cargarFiltroMaxJugadores()
+        Constructor.cargarFiltroPropietarios()
 
 
     def cargarFiltroPropietarios():
@@ -58,3 +61,27 @@ class Constructor():
                 var.wMain.ui.cbDificultad.addItem(i.dificultad)
         except Exception as error:
             print("Error al cargar dificultades: " + str(error))
+
+    def cargarFiltroMinJugadores():
+        try:
+            var.wMain.ui.cbMinJugadores.addItem("")
+            for i in var.db.listadoMinJugadores():
+                var.wMain.ui.cbMinJugadores.addItem(str(i))
+        except Exception as error:
+            print("Error al cargar cbMinJugadores: " + str(error))
+
+    def cargarFiltroMaxJugadores():
+        try:
+            var.wMain.ui.cbMaxJugadores.addItem("")
+            for i in var.db.listadoMaxJugadores():
+                var.wMain.ui.cbMaxJugadores.addItem(str(i))
+        except Exception as error:
+            print("Error al cargar cbMaxJugadores: " + str(error))
+
+    def cargarFiltroGenero():
+        try:
+            var.wMain.ui.cbGenero.addItem("")
+            for i in var.db.listadoGeneros():
+                var.wMain.ui.cbGenero.addItem(str(i))
+        except Exception as error:
+            print("Error al cargar cbMaxJugadores: " + str(error))
