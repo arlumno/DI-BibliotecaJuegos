@@ -6,7 +6,7 @@ import tempfile
 from PyQt5 import QtWidgets, QtSql
 
 import var
-import Acciones
+import acciones
 from ClasesComponentes import *
 import constructor
 from Herramientas import Herramientas
@@ -136,12 +136,12 @@ class Database():
     def listadoJuegosFiltrado(self, filtros):
         q = QtSql.QSqlQuery()
         consulta = self.consultaJuegos + " WHERE nombre LIKE :nombre"
+        listado = []
         for i in filtros:
             if not i == "nombre":
-                consulta = consulta + " AND " + i + " = '"+ filtros[i] +"'"
+                consulta = consulta + " AND " + i + " = '"+ str(filtros[i]) +"'"
         q.prepare(consulta)
         q.bindValue(":nombre", "%" + str(filtros["nombre"]) + "%")
-        listado = []
         if q.exec_():
             listado = self.procesarConsultaJuegos(q)
         else:

@@ -12,7 +12,7 @@ if __name__ == '__main__':
     Constructor.cargarComponentes()
 
     Constructor.cargarFiltros()
-    Constructor.cargarListadoJuegos(var.db.listadoJuegos())
+    Constructor.cargarListadoJuegos()
 
 
     Constructor.cargarEventos()

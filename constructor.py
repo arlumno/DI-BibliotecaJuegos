@@ -1,6 +1,6 @@
 import var
 from ClasesUi import *
-from Acciones import Acciones
+from acciones import Acciones
 
 
 
@@ -19,10 +19,13 @@ class Constructor():
     def cargarEventos():
         var.wMain.ui.bSalir.clicked.connect(Acciones.salir)
         var.wMain.ui.bFiltrar.clicked.connect(Acciones.filtrarListado)
+        var.wMain.ui.bReiniciarFiltros.clicked.connect(Acciones.reiniciarFiltros)
 
 
 
-    def cargarListadoJuegos(listadoJuegos):
+    def cargarListadoJuegos(listadoJuegos = None):
+        if listadoJuegos is None:
+            listadoJuegos = var.db.listadoJuegos()
         var.wMain.ui.twListadoJuegos.setRowCount(0)
         if len(listadoJuegos) > 0:
             row = 0

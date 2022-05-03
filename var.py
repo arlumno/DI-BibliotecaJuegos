@@ -21,5 +21,6 @@ listadoEnvios = []
 # *****************************
 
 global db
+db= None
 global wMain
 wMain = None

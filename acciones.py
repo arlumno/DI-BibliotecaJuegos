@@ -43,7 +43,16 @@ class Acciones():
                     filtros["propietario"] = propietario.id
         constructor.Constructor.cargarListadoJuegos(var.db.listadoJuegosFiltrado(filtros))
 
-
+    def reiniciarFiltros():
+        var.wMain.ui.etNombre.setText("")
+        var.wMain.ui.cbGenero.setCurrentText("")
+        var.wMain.ui.cbDificultad.setCurrentText("")
+        var.wMain.ui.cbMinJugadores.setCurrentText("")
+        var.wMain.ui.cbMaxJugadores.setCurrentText("")
+        var.wMain.ui.cbPropietario.setCurrentText("")
+        var.wMain.ui.cbGenero.setCurrentText("")
+        var.wMain.ui.cbGenero.setCurrentText("")
+        constructor.Constructor.cargarListadoJuegos()
 
     def abrirLog():
         try:
