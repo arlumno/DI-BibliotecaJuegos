@@ -1,5 +1,4 @@
 global menu
-global dSalir
 global dLog
 global dCalendar
 global dFileOpen
@@ -20,7 +19,12 @@ listadoProvincias = []
 listadoEnvios = []
 # *****************************
 
+global dSalir
+global dJuego
 global db
 db= None
 global wMain
 wMain = None
+
+global rowIdJuegos
+rowIdJuegos = {}

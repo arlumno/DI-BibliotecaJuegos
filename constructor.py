@@ -12,16 +12,21 @@ class Constructor():
 
         # cargar UIs adicionales.
         var.dSalir = DialogSalir()
+        var.dJuego = DialogJuego()
         # var.dCalendar = DialogCalendar()
         var.dLog = DialogLog()
         var.dFileOpen = FileDialogAbrir()
 
     def cargarEventos():
-        var.wMain.ui.bSalir.clicked.connect(Acciones.salir)
-        var.wMain.ui.bFiltrar.clicked.connect(Acciones.filtrarListado)
-        var.wMain.ui.bReiniciarFiltros.clicked.connect(Acciones.reiniciarFiltros)
+        #UI Main
+        uiMain = var.wMain.ui
+        uiMain.bSalir.clicked.connect(Acciones.salir)
+        uiMain.bFiltrar.clicked.connect(Acciones.filtrarListado)
+        uiMain.bReiniciarFiltros.clicked.connect(Acciones.reiniciarFiltros)
+        uiMain.twListadoJuegos.doubleClicked.connect(Acciones.abrirJuegoSeleccionado)
 
-
+        #Ui Juego
+        var.dJuego.ui.bSalir.clicked.connect(var.dJuego.hide)
 
     def cargarListadoJuegos(listadoJuegos = None):
         if listadoJuegos is None:
@@ -29,6 +34,7 @@ class Constructor():
         var.wMain.ui.twListadoJuegos.setRowCount(0)
         if len(listadoJuegos) > 0:
             row = 0
+            var.rowIdJuegos = {}
             for juego in listadoJuegos:
                 var.wMain.ui.twListadoJuegos.insertRow(row)
                 var.wMain.ui.twListadoJuegos.setItem(row, 0, QtWidgets.QTableWidgetItem(str(juego.id)))
@@ -39,6 +45,7 @@ class Constructor():
                 var.wMain.ui.twListadoJuegos.setItem(row, 5, QtWidgets.QTableWidgetItem(str(juego.maxJugadores)))
                 var.wMain.ui.twListadoJuegos.setItem(row, 6, QtWidgets.QTableWidgetItem(str(juego.propietario.nombre)))
                 var.wMain.ui.twListadoJuegos.setItem(row, 7, QtWidgets.QTableWidgetItem(str(juego.fechaAlta)))
+                var.rowIdJuegos[row] = juego.id
                 row += 1
 
     def cargarFiltros():
@@ -88,3 +95,10 @@ class Constructor():
                 var.wMain.ui.cbGenero.addItem(str(i))
         except Exception as error:
             print("Error al cargar cbMaxJugadores: " + str(error))
+
+    def cargarJuego(idJuego):
+        print(str(idJuego))
+        juego = var.db.obtenerJuego(idJuego)
+        print(juego)
+        print(juego.nombre)
+        var.dJuego.lbNombre.setText(juego.nombre)

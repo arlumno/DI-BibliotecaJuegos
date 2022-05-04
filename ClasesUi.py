@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from UiDialogJuego import Ui_DialogJuego
 from UiPrincipal import *
 from UiDialogSalir import *
 from UiDialogLog import *
@@ -98,3 +100,9 @@ class DialogLog(QtWidgets.QDialog):
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
+
+class DialogJuego(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogJuego, self).__init__()
+        self.ui = Ui_DialogJuego()
+        self.ui.setupUi(self)

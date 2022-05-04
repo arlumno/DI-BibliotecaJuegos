@@ -54,6 +54,17 @@ class Acciones():
         var.wMain.ui.cbGenero.setCurrentText("")
         constructor.Constructor.cargarListadoJuegos()
 
+    def abrirJuegoSeleccionado():
+        rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
+        idJuego = var.rowIdJuegos[rowJuego]
+        print(str(idJuego))
+        Acciones.abrirjuego(idJuego) ##TODO
+
+    def abrirJuego(idJuego):
+        print(str(idJuego))
+        constructor.Constructor.cargarJuego(idJuego)
+        var.dJuego.show()
+
     def abrirLog():
         try:
             var.dLog.show()

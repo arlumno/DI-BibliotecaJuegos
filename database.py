@@ -49,6 +49,18 @@ class Database():
             print("DB - Error al obtener listado de juegos: ", q.lastError().text())
         return listado
 
+    def obtenerJuego(self, idJuego):
+        q = QtSql.QSqlQuery()
+        q.prepare(self.consultaJuegos + " WHERE id = :id")
+        q.bindValue(":id",str(idJuego))
+
+        juego = None
+        if q.exec_():
+            juego = self.procesarConsultaJuegos(q)
+        else:
+            print("DB - Error al obtener juego: ", q.lastError().text())
+        return juego
+
     def procesarConsultaJuegos(self,q):
         propietarios = self.listadoPropietarios();
         dificultades = self.listadoDificultades();
