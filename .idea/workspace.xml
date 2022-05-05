@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UiDialogJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClasesComponentes.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesComponentes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClasesUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesUi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constructor.py" beforeDir="false" afterPath="$PROJECT_DIR$/constructor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/var.py" beforeDir="false" afterPath="$PROJECT_DIR$/var.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +29,12 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/constructor.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -96,15 +100,24 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/acciones.py</url>
-          <line>70</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/constructor.py</url>
+          <line>134</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file:////tx1/u-idna/a20armandocb/ArGit/DI-BibliotecaJuegos/acciones.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/database.py</url>
+          <line>170</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

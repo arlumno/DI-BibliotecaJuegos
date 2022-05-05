@@ -11,7 +11,7 @@ if __name__ == '__main__':
     var.db.connect()
     Constructor.cargarComponentes()
 
-    Constructor.cargarFiltros()
+    Constructor.cargarUI()
     Constructor.cargarListadoJuegos()
 
 

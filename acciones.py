@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets
 
 import constructor
 import var
-from database import Database
+from ClasesComponentes import *
 from Herramientas import Herramientas
 
 
@@ -57,13 +57,56 @@ class Acciones():
     def abrirJuegoSeleccionado():
         rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
         idJuego = var.rowIdJuegos[rowJuego]
-        print(str(idJuego))
-        Acciones.abrirJuego(idJuego) ##TODO
+        # print(str(idJuego))
+        Acciones.abrirJuego(idJuego)
 
     def abrirJuego(idJuego):
-        print(str(idJuego))
+        # print(str(idJuego))
+        var.dJuego.hide()
         constructor.Constructor.cargarJuego(idJuego)
         var.dJuego.show()
+    def cerrarAddJuego():
+        var.dAddJuego.hide()
+        Acciones.limpiarCamposAddJuegos()
+
+    def aplicarGenero(genero):
+        var.dAddJuego.ui.etGenero.setText(genero)
+        var.dAddJuego.ui.cbGenero.setCurrentText("")
+
+    def guardarJuego():
+        if var.dAddJuego.ui.etNombre.text() == "":
+            Herramientas.ventanaAdvertencia("El campo 'Nombre' es obligatorio")
+        else:
+            nombre = var.dAddJuego.ui.etNombre.text()
+            minJugadores = var.dAddJuego.ui.sbMinJugadores.value()
+            maxJugadores = var.dAddJuego.ui.sbMaxJugadores.value()
+            juego = Juego(None, nombre, minJugadores, maxJugadores)
+            juego.genero = var.dAddJuego.ui.etGenero.text()
+            if not var.dAddJuego.ui.cbDificultad.currentText() == "":
+                juego.dificultad = var.dificultadesByDificultad[str(var.dAddJuego.ui.cbDificultad.currentText())]
+
+            if not var.dAddJuego.ui.cbPropietario.currentText() == "":
+                juego.propietario = var.propietariosByNombre[str(var.dAddJuego.ui.cbPropietario.currentText())]
+
+            juego.descripcion = var.dAddJuego.ui.teDescripcion.toPlainText()
+            juego.observaciones = var.dAddJuego.ui.teObservaciones.toPlainText()
+
+            var.db.guardarJuego(juego)
+            Acciones.cerrarAddJuego()
+            constructor.Constructor.cargarListadoJuegos()
+
+    def limpiarCamposAddJuegos():
+        var.dAddJuego.ui.etNombre.setText("")
+        var.dAddJuego.ui.sbMinJugadores.setValue(1)
+        var.dAddJuego.ui.sbMinJugadores.setValue(1)
+
+        var.dAddJuego.ui.etGenero.setText("")
+        var.dAddJuego.ui.cbDificultad.setCurrentText("")
+        var.dAddJuego.ui.cbPropietario.setCurrentText("")
+
+        var.dAddJuego.ui.teDescripcion.setPlainText("")
+        var.dAddJuego.ui.teObservaciones.setPlainText("")
+
 
     def abrirLog():
         try:

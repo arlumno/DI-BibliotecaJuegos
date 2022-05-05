@@ -4,9 +4,9 @@ class Juego():
         self.nombre = nombre
         self.minJugadores = min_jugadores
         self.maxJugadores = max_jugadores
-        self.dificultad = ""
+        self.dificultad = None
         self.genero = ""
-        self.propietario = ""
+        self.propietario = None
         self.fechaAlta = ""
         self.descripcion = ""
         self.observaciones = ""
@@ -19,9 +19,9 @@ class Juego():
                + str(self.dificultad) + " - " \
                + str(self.genero) + " - " \
                + str(self.propietario) + " - " \
-               + str(self.fechaAlta) + " - " \
+               + str(self.fechaAlta) + " - \n\t" \
                + str(self.descripcion) + "\n\t - " \
-               + str(self.observaciones) + "\n\t - "
+               + str(self.observaciones)
         return text
 
 

@@ -71,15 +71,11 @@ class Database():
 
             if not q.value(4) == "":
                 juego.dificultad = dificultades[str(q.value(4))]
-            else:
-                juego.dificultad = q.value(4)
 
             juego.genero = q.value(5)
 
             if not q.value(6) == "":
                 juego.propietario = propietarios[str(q.value(6))]
-            else:
-                juego.propietario = q.value(6)
 
             juego.fechaAlta = q.value(7)
 
@@ -91,24 +87,32 @@ class Database():
         q = QtSql.QSqlQuery()
         q.prepare("SELECT id, nombre FROM propietarios")
         listado = {}
+        propietariosByNombre = {}
         if q.exec_():
             while q.next():
                 propietario = Propietario(q.value(0), q.value(1))
+                propietariosByNombre[str(q.value(1))] = propietario
                 listado[str(q.value(0))] = propietario
         else:
             print("DB - Error al obtener listado de propietarios: ", q.lastError().text())
+
+        var.propietariosByNombre = propietariosByNombre
+
         return listado
 
     def listadoDificultades(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT id, dificultad FROM dificultad")
         listado = {}
+        dificultadesByDificultad = {}
         if q.exec_():
             while q.next():
                 dificultad = Dificultad(q.value(0), q.value(1))
+                dificultadesByDificultad[str(q.value(1))] = dificultad
                 listado[str(q.value(0))] = dificultad
         else:
             print("DB - Error al obtener listado de dificultades: ", q.lastError().text())
+        var.dificultadesByDificultad = dificultadesByDificultad
         return listado
 
     def listadoMinJugadores(self):
@@ -161,7 +165,40 @@ class Database():
 
         return listado
 
+    def guardarJuego(self,juego):
+        q = QtSql.QSqlQuery()
 
+        if juego.id is None: ## es un insert.
+            q.prepare(
+                "INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta)  "
+                "VALUES ( :nombre, :minJugadores, :maxJugadores, :dificultad, :genero, :propietario, :fecha_alta)")
+
+            q.bindValue(":nombre", juego.nombre)
+            q.bindValue(":minJugadores", str(juego.minJugadores))
+            q.bindValue(":maxJugadores", str(juego.maxJugadores))
+
+            if juego.dificultad is None:
+                q.bindValue(":dificultad", "")
+            else:
+                q.bindValue(":dificultad", str(juego.dificultad.id))
+
+            if juego.propietario is None:
+                q.bindValue(":propietario", "")
+            else:
+                q.bindValue(":propietario", str(juego.propietario.id))
+
+            q.bindValue(":genero", str(juego.genero))
+
+            q.bindValue(":fecha_alta", str(Herramientas.fechaActual()))
+
+            print("Juego guardado")
+        else: ##es un update
+            print("juego actualizado")
+        if q.exec_():
+            return True
+        else:
+            print("Error al guardar cliente: ", q.lastError().text())
+            return False
 
 
 

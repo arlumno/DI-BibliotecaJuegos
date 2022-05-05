@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from UiDialogAddJuego import Ui_DialogAddJuego
 from UiDialogJuego import Ui_DialogJuego
 from UiPrincipal import *
 from UiDialogSalir import *
@@ -105,4 +106,10 @@ class DialogJuego(QtWidgets.QDialog):
     def __init__(self):
         super(DialogJuego, self).__init__()
         self.ui = Ui_DialogJuego()
+        self.ui.setupUi(self)
+
+class DialogAddJuego(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogAddJuego, self).__init__()
+        self.ui = Ui_DialogAddJuego()
         self.ui.setupUi(self)
