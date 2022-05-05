@@ -58,7 +58,7 @@ class Acciones():
         rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
         idJuego = var.rowIdJuegos[rowJuego]
         print(str(idJuego))
-        Acciones.abrirjuego(idJuego) ##TODO
+        Acciones.abrirJuego(idJuego) ##TODO
 
     def abrirJuego(idJuego):
         print(str(idJuego))

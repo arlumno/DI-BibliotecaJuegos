@@ -97,8 +97,11 @@ class Constructor():
             print("Error al cargar cbMaxJugadores: " + str(error))
 
     def cargarJuego(idJuego):
-        print(str(idJuego))
         juego = var.db.obtenerJuego(idJuego)
-        print(juego)
-        print(juego.nombre)
-        var.dJuego.lbNombre.setText(juego.nombre)
+        var.dJuego.hide()
+        var.dJuego.ui.lbNombre.setText(juego.nombre)
+        var.dJuego.ui.lbPropietario.setText(juego.propietario)
+        var.dJuego.ui.lbGenero.setText(juego.genero)
+        #var.dJuego.ui.teDescripcion.setText(juego.descripcion)
+        #var.dJuego.ui.teObservaciones.setText(juego.observaciones)
+        var.dJuego.ui.lbNJugadores.setText(str(juego.minJugadores) + " - "+ juego.maxJugadores)

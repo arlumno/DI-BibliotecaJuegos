@@ -56,7 +56,7 @@ class Database():
 
         juego = None
         if q.exec_():
-            juego = self.procesarConsultaJuegos(q)
+            juego = self.procesarConsultaJuegos(q)[0]
         else:
             print("DB - Error al obtener juego: ", q.lastError().text())
         return juego
