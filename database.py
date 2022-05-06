@@ -184,7 +184,11 @@ class Database():
 
             if juego.propietario is None:
                 q.bindValue(":propietario", "")
+            # elif juego.propietario.id is None: #si el propietario no existe. se busca o crea uno nuevo
+            #     if juego.propietario.nombre in var.propietariosByNombre:
+            #         juego.
             else:
+                q.bindValue(":propietario", str(juego.propietario.id))
                 q.bindValue(":propietario", str(juego.propietario.id))
 
             q.bindValue(":genero", str(juego.genero))
@@ -193,6 +197,7 @@ class Database():
 
             print("Juego guardado")
         else: ##es un update
+            #TODO
             print("juego actualizado")
         if q.exec_():
             return True
@@ -200,8 +205,12 @@ class Database():
             print("Error al guardar cliente: ", q.lastError().text())
             return False
 
+#    def guardarListadoJuegos(listadoJuegos):
 
+    def guardarPropietario(propietario):
+        if propietario.id is None:
 
+        else: #TODO actualiza
 
 
 
