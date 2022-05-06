@@ -65,6 +65,7 @@ class Acciones():
         var.dJuego.hide()
         constructor.Constructor.cargarJuego(idJuego)
         var.dJuego.show()
+
     def cerrarAddJuego():
         var.dAddJuego.hide()
         Acciones.limpiarCamposAddJuegos()
@@ -98,7 +99,7 @@ class Acciones():
     def limpiarCamposAddJuegos():
         var.dAddJuego.ui.etNombre.setText("")
         var.dAddJuego.ui.sbMinJugadores.setValue(1)
-        var.dAddJuego.ui.sbMinJugadores.setValue(1)
+        var.dAddJuego.ui.sbMaxJugadores.setValue(1)
 
         var.dAddJuego.ui.etGenero.setText("")
         var.dAddJuego.ui.cbDificultad.setCurrentText("")
@@ -107,6 +108,72 @@ class Acciones():
         var.dAddJuego.ui.teDescripcion.setPlainText("")
         var.dAddJuego.ui.teObservaciones.setPlainText("")
 
+    def importarXls():
+        try:
+            dirName, fileName = var.dFileOpen.getOpenFileName(None, None, None, "*.xls *.XLS", )
+            archivoXls = xlrd.open_workbook(dirName)
+            hoja1 = archivoXls.sheet_by_index(0)
+            if hoja1.nrows > 0 and hoja1.ncols >0:
+
+                #cabeceras
+                #localizamos el indice de cada columna respecto
+                index = {}
+                for i in range(hoja1.ncols):
+                    cabecera = str(hoja1.cell_value(0,i)).lower()
+                    if cabecera == "nombre": index[i] = "nombre"
+                    elif cabecera == "genero": index[i] = "genero"
+                    elif cabecera == "dificultad": index[i] = "dificultad"
+                    elif cabecera == "min_jugadores": index[i] = "minJugadores"
+                    elif cabecera == "max_jugadores": index[i] = "maxJugadores"
+                    elif cabecera == "descripcion": index[i] = "descripcion"
+                    elif cabecera == "observaciones": index[i] = "observaciones"
+                    elif cabecera == "propietario": index[i] = "propietario"
+                    elif cabecera == "fecha_alta": index[i] = "fecha_alta"
+
+                #campos obligatorios
+                if "nombre" not in index.values() or "min_jugadores" not in index.values() or "max_jugadores" not in index.values():
+                    Herramientas.ventanaAdvertencia("Faltan campos obligatorios en el archivo.")
+                else:
+                    listadoJuegos = []
+                    dificultades = var.db.listadoDificultades()
+
+                    for e in range(1, hoja1.nrows): #itero cada linea y extraigo sus datos
+                        nombre = genero = dificultad = minJugadores = maxJugadores = descripcion = observaciones = propietario  = fechaAlta = ""
+                        campos = {"nombre":"", "minJugadores":"", "maxJugadores":"", "genero":"", "dificultad":"", "descripcion":"", "observaciones":"", "propietario":"", "fechaAlta":"",}
+                        for i in index:
+                            campos[index[i]] = str(hoja1.cell_value(e,i))
+                        juego = Juego(campos["nombre"],campos["minJugadores"],campos["maxJugadores"])
+                        juego.genero = campos["genero"]
+                        juego.descripcion = campos["descripcion"]
+                        juego.observaciones = campos["observaciones"]
+                        juego.fechaAlta = campos["fechaAlta"]
+                        if not campos["dificultad"] == "":
+                            juego.dificultad = dificultades[campos["dificultad"]]
+
+                        if not campos["propietario"] == "":
+                            if campos["propietario"] in var.propietariosByNombre.keys():
+                                juego.propietario = var.propietariosByNombre[campos["propietario"]]
+                            else:
+                                juego.propietario = Propietario(None,campos["propietario"])
+
+                        listadoJuegos.append(juego)
+
+                    Acciones.importarJuegos(listadoJuegos)
+
+            else:
+                Herramientas.ventanaAdvertencia("No hay datos para importar en el archivo")
+
+        except Exception as error:
+            Herramientas.ventanaAdvertencia("No se han podido importar los datos", "error", str(error))
+
+    def importarJuegos(listadoJuegos):
+        if Herramientas.ventanaConfirmacion("Hay un total de " + str(
+                len(listadoJuegos)) + " Juegos para importar. Los Juegos existentes se actualizarán. \n¿Está seguro?",
+                                            "Importar Juegos", None, str(listadoJuegos)):
+            print("error")
+            # database.Database.importarListadoClientes(listadoClientesImportar)
+            # Acciones.limpiarCamposCliente()
+            # Acciones.cargarClientes()
 
     def abrirLog():
         try:

@@ -397,7 +397,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>160</y>
+        <y>170</y>
         <width>131</width>
         <height>41</height>
        </rect>
@@ -427,6 +427,45 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         <width>121</width>
         <height>271</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bImportarXls">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>220</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Importar XLS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bExportarXls">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>270</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exportar XLS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bInformePdf">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>350</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Imprimir PDF</string>
       </property>
      </widget>
     </widget>

@@ -14,10 +14,10 @@ class Constructor():
         var.dSalir = DialogSalir()
         var.dJuego = DialogJuego()
         var.dAddJuego = DialogAddJuego()
+        var.dFileOpen = FileDialogAbrir()
 
         # var.dCalendar = DialogCalendar()
         var.dLog = DialogLog()
-        var.dFileOpen = FileDialogAbrir()
 
     def cargarEventos():
         #UI Main
@@ -27,6 +27,7 @@ class Constructor():
         uiMain.bReiniciarFiltros.clicked.connect(Acciones.reiniciarFiltros)
         uiMain.twListadoJuegos.doubleClicked.connect(Acciones.abrirJuegoSeleccionado)
         uiMain.bAddJuego.clicked.connect(var.dAddJuego.show)
+        uiMain.bImportarXls.clicked.connect(Acciones.importarXls)
 
 
         #Ui Juego
@@ -46,7 +47,6 @@ class Constructor():
             row = 0
             var.rowIdJuegos = {}
             for juego in listadoJuegos:
-                print(juego.dificultad)
                 var.wMain.ui.twListadoJuegos.insertRow(row)
                 var.wMain.ui.twListadoJuegos.setItem(row, 0, QtWidgets.QTableWidgetItem(str(juego.id)))
                 var.wMain.ui.twListadoJuegos.setItem(row, 1, QtWidgets.QTableWidgetItem(str(juego.nombre)))

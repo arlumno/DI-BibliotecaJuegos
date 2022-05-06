@@ -13,8 +13,6 @@ if __name__ == '__main__':
 
     Constructor.cargarUI()
     Constructor.cargarListadoJuegos()
-
-
     Constructor.cargarEventos()
 
     var.wMain.show()

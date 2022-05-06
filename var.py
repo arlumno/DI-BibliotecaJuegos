@@ -23,6 +23,8 @@ global dSalir
 global dJuego
 global dAddJuego
 global db
+global dFileOpen
+
 db= None
 global wMain
 wMain = None
