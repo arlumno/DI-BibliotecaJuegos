@@ -96,6 +96,26 @@ class Acciones():
             Acciones.cerrarAddJuego()
             constructor.Constructor.cargarListadoJuegos()
 
+    def addPropietario():
+        try:
+            if var.dAddPropietario.ui.etNombre.text() != "":
+                propietario = Propietario(None,str(var.dAddPropietario.ui.etNombre.text()))
+                print(propietario.nombre)
+                var.db.guardarPropietario(propietario)
+                var.dAddPropietario.hide()
+                constructor.Constructor.cargarUIPropietarios()
+
+
+        except Exception as error:
+            print("error addPropietario s%:" % str(error))
+
+    def eliminarPropietario(campo):
+        nombre = campo.text()
+        if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el propietario "+nombre+"?", "¡Atención!"):
+            propietario = Propietario(None, nombre)
+            var.db.eliminarPropetario(propietario)
+
+
     def limpiarCamposAddJuegos():
         var.dAddJuego.ui.etNombre.setText("")
         var.dAddJuego.ui.sbMinJugadores.setValue(1)
@@ -193,7 +213,13 @@ class Acciones():
         except Exception as error:
             print("Error en el Log" + str(error))
 
-
+    def eliminarBD():
+        if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
+            if var.db.eliminarBD():
+                Herramientas.ventanaAdvertencia("Se han eliminado todos los registros.")
+            # else:
+            #     Herramientas.ventanaAdvertencia("Error al eliminar registros")
+            constructor.Constructor.cargarListadoJuegos()
 
 
     # ******************************************************************************************************************************************************
@@ -513,6 +539,10 @@ class Acciones():
 
         return resultado
 
+
+
+
+
     def anunciarStatusBar(msg):
         var.menu.lbStatus.setText("["+ Herramientas.fechaActual() + "] "+msg)
         Acciones.addToLog(msg)
@@ -564,23 +594,7 @@ class Acciones():
     #     except Exception as error:
     #         Herramientas.ventanaAdvertencia("No se ha podido restaurar la Base de datos","error",str(error))
     #
-    # def borrarClientesBd():
-    #     if Herramientas.ventanaConfirmacion("¿Estas seguro de Borrar todos los clientes la Base De Datos?", "¡Atención!"):
-    #         ## esto borra el archivo de BD. incluida la tabla de Provincias....
-    #         # try:
-    #         #     database.Database.disconnect()
-    #         #     os.remove(var.fileDb)
-    #         #     Herramientas.ventanaAdvertencia("Base de datos BORRADA")
-    #         #     Acciones.anunciarStatusBar("Base de datos eliminada")
-    #         # except Exception as error:
-    #         #     Herramientas.ventanaAdvertencia("Error al Borrar la Base de datos", "error", str(error))
-    #         # database.Database.connect()  # conectamos de nuevo la bd
-    #         if database.Database.borrarClientes():
-    #             Herramientas.ventanaAdvertencia("Se han eliminado todos los registros de clientes.")
-    #             Acciones.anunciarStatusBar("Eliminados todos los clientes")
-    #         else:
-    #             Herramientas.ventanaAdvertencia("Error al eliminar registros")
-    #         Acciones.cargarClientes()
+
     #
     # def importarDatos():
     #     try:

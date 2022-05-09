@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>recursos/salida.png</file>
+    <file>recursos/logo_dados.png</file>
     <file>recursos/add-user.png</file>
     <file>recursos/borrar.png</file>
     <file>recursos/Download Database.png</file>

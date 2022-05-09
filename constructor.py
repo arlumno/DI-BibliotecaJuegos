@@ -15,6 +15,7 @@ class Constructor():
         var.dSalir = DialogSalir()
         var.dJuego = DialogJuego()
         var.dAddJuego = DialogAddJuego()
+        var.dAddPropietario = DialogAddPropietario()
         var.dFileOpen = FileDialogAbrir()
 
         # var.dCalendar = DialogCalendar()
@@ -31,10 +32,14 @@ class Constructor():
         uiMain.bImportarXls.clicked.connect(Acciones.importarXls)
         #uiMain.bExportarXls.clicked.connect(Acciones.importarXls)
         uiMain.bInformePdf.clicked.connect(informes.Informes.reportCli)
+        uiMain.bEliminarBD.clicked.connect(Acciones.eliminarBD)
+        uiMain.bAddPropietario.clicked.connect(var.dAddPropietario.show)
+        uiMain.lwPropietarios.itemDoubleClicked.connect(Acciones.eliminarPropietario)
 
         #Barra menu.
         uiMain.actionImportarXls.triggered.connect(Acciones.importarXls)
         uiMain.actionImprimirPdf.triggered.connect(informes.Informes.reportCli)
+        uiMain.actionEliminarBD.triggered.connect(Acciones.eliminarBD)
 
         #Ui Juego
         var.dJuego.ui.bCerrar.clicked.connect(var.dJuego.hide)
@@ -43,7 +48,11 @@ class Constructor():
         var.dAddJuego.ui.bCerrar.clicked.connect(Acciones.cerrarAddJuego)
         var.dAddJuego.ui.bGuardar.clicked.connect(Acciones.guardarJuego)
         var.dAddJuego.ui.cbGenero.activated[str].connect(Acciones.aplicarGenero)
+        var.dAddJuego.ui.bAddPropietario.clicked.connect(var.dAddPropietario.show)
 
+        #Ui AddPropietario
+        var.dAddPropietario.ui.bGuardar.clicked.connect(Acciones.addPropietario)
+        var.dAddPropietario.ui.bCancelar.clicked.connect(var.dAddPropietario.hide);
 
     def cargarListadoJuegos(listadoJuegos = None):
         if listadoJuegos is None:
@@ -92,8 +101,11 @@ class Constructor():
 
     def cargarUIPropietarios():
         try:
+            var.wMain.ui.cbPropietario.clear()
             var.wMain.ui.cbPropietario.addItem("")
+            var.dAddJuego.ui.cbPropietario.clear()
             var.dAddJuego.ui.cbPropietario.addItem("")
+            var.wMain.ui.lwPropietarios.clear()
             for i in var.db.listadoPropietarios().values():
                 var.wMain.ui.cbPropietario.addItem(i.nombre)
                 var.wMain.ui.lwPropietarios.addItem(i.nombre)

@@ -72,23 +72,34 @@ class Informes():
         var.report.line(45, 703, 525, 703)
 
     def body(listadoJuegos):
-        i = 675
-        j = i
-        var.report.setFont('Helvetica', size=8)
-        for juego in listadoJuegos:
-            var.report.drawString(50, j, str(juego.id))
-            var.report.drawString(70, j, juego.nombre)
-            var.report.drawString(200, j, (str(juego.minJugadores) + " - " + str(juego.maxJugadores)))
-            var.report.drawString(240, j, juego.genero)
-            var.report.drawString(345, j, juego.dificultad.dificultad)
-            var.report.drawString(410, j, juego.propietario.nombre)
-            var.report.drawRightString(525, j, str(juego.fechaAlta))
-            j = j - 30
-            if j < 70:
-                Informes.footer()
-                var.report.showPage()
-                Informes.header()
-                j = i
+        try:
+            i = 675
+            j = i
+            var.report.setFont('Helvetica', size=8)
+            for juego in listadoJuegos:
+                var.report.drawString(50, j, str(juego.id))
+                var.report.drawString(70, j, juego.nombre)
+                var.report.drawString(195, j, (str(juego.minJugadores) + " - " + str(juego.maxJugadores)))
+                var.report.drawString(240, j, juego.genero)
+                if juego.dificultad is None:
+                    dificultad = ""
+                else:
+                    dificultad = juego.dificultad.dificultad
+                var.report.drawString(345, j, dificultad)
+                if juego.propietario is None:
+                    propietario = ""
+                else:
+                    propietario = juego.propietario.nombre
+                var.report.drawString(410, j, propietario)
+                var.report.drawRightString(525, j, str(juego.fechaAlta))
+                j = j - 30
+                if j < 70:
+                    Informes.footer()
+                    var.report.showPage()
+                    Informes.header()
+                    j = i
+        except Exception as error:
+            print('Error reporcli body %s ' % str(error))
 
     def footer():
         try:

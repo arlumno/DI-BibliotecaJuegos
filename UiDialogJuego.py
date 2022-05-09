@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_DialogJuego(object):
     def setupUi(self, DialogJuego):
         DialogJuego.setObjectName("DialogJuego")
-        DialogJuego.resize(512, 566)
+        DialogJuego.resize(510, 556)
         self.label_17 = QtWidgets.QLabel(DialogJuego)
         self.label_17.setGeometry(QtCore.QRect(30, 190, 91, 29))
         self.label_17.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -176,6 +176,13 @@ class Ui_DialogJuego(object):
         self.bCerrar = QtWidgets.QPushButton(DialogJuego)
         self.bCerrar.setGeometry(QtCore.QRect(400, 512, 91, 31))
         self.bCerrar.setObjectName("bCerrar")
+        self.bEliminar = QtWidgets.QPushButton(DialogJuego)
+        self.bEliminar.setGeometry(QtCore.QRect(30, 510, 91, 31))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/recursos/remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bEliminar.setIcon(icon)
+        self.bEliminar.setIconSize(QtCore.QSize(24, 24))
+        self.bEliminar.setObjectName("bEliminar")
 
         self.retranslateUi(DialogJuego)
         QtCore.QMetaObject.connectSlotsByName(DialogJuego)
@@ -203,3 +210,5 @@ class Ui_DialogJuego(object):
         self.lbNJugadores.setText(_translate("DialogJuego", "0"))
         self.label_8.setText(_translate("DialogJuego", "Juego"))
         self.bCerrar.setText(_translate("DialogJuego", "Cerrar"))
+        self.bEliminar.setText(_translate("DialogJuego", "Eliminar"))
+import iconos_rc

@@ -203,13 +203,26 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <widget class="QWidget" name="horizontalLayoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>15</x>
+         <x>10</x>
          <y>17</y>
-         <width>651</width>
+         <width>661</width>
          <height>45</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -345,38 +358,50 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         </item>
        </layout>
       </widget>
-      <widget class="QPushButton" name="bFiltrar">
-       <property name="geometry">
-        <rect>
-         <x>680</x>
-         <y>31</y>
-         <width>75</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Filtrar</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>:/iconos/C:/Users/a20armandocb/Documents/Git-Ar/DI-BibliotecaJuegos/recursos/filter.png</normaloff>:/iconos/C:/Users/a20armandocb/Documents/Git-Ar/DI-BibliotecaJuegos/recursos/filter.png</iconset>
-       </property>
-      </widget>
       <widget class="QPushButton" name="bReiniciarFiltros">
        <property name="geometry">
         <rect>
          <x>760</x>
-         <y>31</y>
-         <width>71</width>
-         <height>31</height>
+         <y>17</y>
+         <width>75</width>
+         <height>46</height>
         </rect>
        </property>
        <property name="text">
         <string>Reiniciar</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/iconos/C:/Users/a20armandocb/Documents/Git-Ar/DI-BibliotecaJuegos/recursos/borrar.png</normaloff>:/iconos/C:/Users/a20armandocb/Documents/Git-Ar/DI-BibliotecaJuegos/recursos/borrar.png</iconset>
+        <iconset resource="iconos.qrc">
+         <normaloff>:/icons/recursos/borrar.png</normaloff>:/icons/recursos/borrar.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="bFiltrar">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>17</y>
+         <width>75</width>
+         <height>46</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Filtrar</string>
+       </property>
+       <property name="icon">
+        <iconset resource="iconos.qrc">
+         <normaloff>:/icons/recursos/filter.png</normaloff>:/icons/recursos/filter.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
        </property>
       </widget>
      </widget>
@@ -392,7 +417,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>4</y>
+        <y>0</y>
         <width>871</width>
         <height>31</height>
        </rect>
@@ -416,7 +441,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>680</x>
         <y>70</y>
         <width>171</width>
         <height>271</height>
@@ -471,7 +496,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="bEliminarBd">
+      <widget class="QPushButton" name="bEliminarBD">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -498,7 +523,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>470</x>
         <y>70</y>
         <width>151</width>
         <height>171</height>
@@ -557,7 +582,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>470</x>
         <y>289</y>
         <width>151</width>
         <height>101</height>
@@ -593,7 +618,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>260</x>
         <y>70</y>
         <width>171</width>
         <height>391</height>
@@ -605,14 +630,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <widget class="QListWidget" name="lwPropietarios">
        <property name="geometry">
         <rect>
-         <x>11</x>
+         <x>10</x>
          <y>30</y>
          <width>151</width>
          <height>271</height>
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="bAddGame_2">
+      <widget class="QPushButton" name="bAddPropietario">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -642,7 +667,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         <x>30</x>
         <y>70</y>
         <width>181</width>
-        <height>80</height>
+        <height>251</height>
        </rect>
       </property>
       <property name="title">
@@ -652,7 +677,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>180</y>
          <width>161</width>
          <height>51</height>
         </rect>
@@ -671,6 +696,25 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         </size>
        </property>
       </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>141</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="iconos.qrc">:/icons/recursos/logo_dados.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -678,13 +722,23 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>600</y>
-      <width>101</width>
-      <height>23</height>
+      <y>592</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>SALIR</string>
+    </property>
+    <property name="icon">
+     <iconset resource="iconos.qrc">
+      <normaloff>:/icons/recursos/salida.png</normaloff>:/icons/recursos/salida.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
     </property>
    </widget>
   </widget>

@@ -23,7 +23,10 @@ class Database():
     def connect(self):
         if not os.path.isfile(self.fileDb):
             Herramientas.ventanaAdvertencia("No hay ninguna base de datos creada. \n Se procede a crear una nueva.","No Database")
-            shutil.copy(sys._MEIPASS+'/'+self.fileDbEmpty, self.fileDb)
+            if os.path.isfile(self.fileDbEmpty):
+                shutil.copy(self.fileDbEmpty, self.fileDb) #para modo desarrollo
+            else:
+                shutil.copy(sys._MEIPASS+'/'+self.fileDbEmpty, self.fileDb)
 
         self.db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.db.setDatabaseName(self.fileDb)
@@ -33,6 +36,12 @@ class Database():
             return False
         else:
             print("Conexión realizada con éxito")
+        return True
+
+    def eliminarBD(self):
+        self.disconnect()
+        os.remove(self.fileDb);
+        self.connect()
         return True
 
     def disconnect(self):
@@ -257,12 +266,32 @@ class Database():
                 return propietario
             else:
                 print("Error al consultar propietario: ", q.lastError().text())
-       # else:
+        # else:
             #TODO actualiza
 
+    def eliminarPropietario(self,propietario):
+            if propietario.id is None:
+                propietario.id = self.buscarIdComponente(propietario)
 
-
-
+            if propietario.id != -1:
+                q = QtSql.QSqlQuery()
+                q.prepare(
+                    "DELETE FROM propietarios WHERE id = :id")
+                q.bindValue(":id", propietario.id)
+                if q.exec_():
+                    print("Propietario eliminado.")
+                    q2 = QtSql.QSqlQuery()
+                    q2.prepare("UPDATE juegos "
+                                "SET propietario = '' "
+                               "WHERE propietario = :id")
+                    q2.bindValue(":id", propietario.id)
+                    if q2.exec_():
+                        print(" eliminado propietarios de juego")
+                    else:
+                        print("Error al eliminar propietarios de juegos : ", q.lastError().text())
+                else:
+                    print("Error al eliminar propietario: ", q.lastError().text())
+                #actualizamos juegos
 # ******************************************************************************************************************************************************
 
     def guardarCliente(cliente):

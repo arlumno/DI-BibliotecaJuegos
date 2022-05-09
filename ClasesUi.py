@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from UiDialogAddJuego import Ui_DialogAddJuego
+from UiDialogAddPropietario import Ui_DialogAddPropietario
 from UiDialogJuego import Ui_DialogJuego
 from UiPrincipal import *
 from UiDialogSalir import *
@@ -77,6 +78,11 @@ class DialogSalir(QtWidgets.QDialog):
         self.ui = Ui_DialogSalir()
         self.ui.setupUi(self)
 
+class DialogAddPropietario(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogAddPropietario, self).__init__()
+        self.ui = Ui_DialogAddPropietario()
+        self.ui.setupUi(self)
 
 # class DialogCalendar(QtWidgets.QDialog):
 #     def __init__(self):

@@ -142,6 +142,17 @@
     <item>
      <widget class="QComboBox" name="cbPropietario"/>
     </item>
+    <item>
+     <widget class="QPushButton" name="bAddPropietario">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="iconos.qrc">
+        <normaloff>:/icons/recursos/add-user.png</normaloff>:/icons/recursos/add-user.png</iconset>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_4">
@@ -287,6 +298,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="iconos.qrc"/>
+ </resources>
  <connections/>
 </ui>

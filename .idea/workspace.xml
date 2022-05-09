@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UiDialogSalir.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogSalir.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UiDialogSalir.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogSalir.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClasesUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesUi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
@@ -14,6 +17,11 @@
       <change beforePath="$PROJECT_DIR$/iconos.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/iconos.qrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iconos_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/iconos_rc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informes.py" beforeDir="false" afterPath="$PROJECT_DIR$/informes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listado_juegos.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/listado_juegos.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/alert-icon-1563.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/calendar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/logo_ies_teis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/var.py" beforeDir="false" afterPath="$PROJECT_DIR$/var.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +62,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/recursos" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos" />
       <recent name="C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\recursos" />
     </key>
   </component>
@@ -122,12 +131,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/database.py</url>
-          <line>264</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/database.py</url>
-          <line>170</line>
+          <line>179</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

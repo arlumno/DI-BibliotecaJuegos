@@ -22,6 +22,7 @@ listadoEnvios = []
 global dSalir
 global dJuego
 global dAddJuego
+global dAddPropietario
 global db
 global dFileOpen
 
