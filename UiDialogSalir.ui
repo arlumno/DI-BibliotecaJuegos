@@ -33,16 +33,19 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>30</y>
+     <y>20</y>
      <width>119</width>
-     <height>104</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="iconos.qrc">:/iconos/recursos/alert-icon-1563.jpg</pixmap>
+    <pixmap resource="iconos.qrc">:/icons/recursos/peligro.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">

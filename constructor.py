@@ -1,3 +1,4 @@
+import informes
 import var
 from ClasesUi import *
 from acciones import Acciones
@@ -28,7 +29,12 @@ class Constructor():
         uiMain.twListadoJuegos.doubleClicked.connect(Acciones.abrirJuegoSeleccionado)
         uiMain.bAddJuego.clicked.connect(var.dAddJuego.show)
         uiMain.bImportarXls.clicked.connect(Acciones.importarXls)
+        #uiMain.bExportarXls.clicked.connect(Acciones.importarXls)
+        uiMain.bInformePdf.clicked.connect(informes.Informes.reportCli)
 
+        #Barra menu.
+        uiMain.actionImportarXls.triggered.connect(Acciones.importarXls)
+        uiMain.actionImprimirPdf.triggered.connect(informes.Informes.reportCli)
 
         #Ui Juego
         var.dJuego.ui.bCerrar.clicked.connect(var.dJuego.hide)
@@ -115,9 +121,12 @@ class Constructor():
 
     def cargarUIGenero():
         try:
+            listadoGeneros = []
+            if listadoGeneros.count("") == 0 :
+                listadoGeneros = var.db.listadoGeneros()
             var.wMain.ui.cbGenero.addItem("")
             var.dAddJuego.ui.cbGenero.addItem("")
-            for i in var.db.listadoGeneros():
+            for i in listadoGeneros:
                 var.wMain.ui.cbGenero.addItem(str(i))
                 var.dAddJuego.ui.cbGenero.addItem(str(i))
         except Exception as error:

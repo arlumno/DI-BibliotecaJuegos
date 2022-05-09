@@ -15,7 +15,7 @@ from Herramientas import Herramientas
 class Database():
     fileDb = "app.db"
     fileDbEmpty = "app.empty.db"
-    consultaJuegos = "SELECT id, nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta FROM juegos"
+    consultaJuegos = "SELECT id, nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta, descripcion, observaciones FROM juegos"
 
     def __init__(self):
         self.db = None
@@ -78,6 +78,8 @@ class Database():
                 juego.propietario = propietarios[str(q.value(6))]
 
             juego.fechaAlta = q.value(7)
+            juego.descripcion = q.value(8)
+            juego.observaciones = q.value(9)
 
             listado.append(juego)
 
@@ -170,20 +172,26 @@ class Database():
 
         if juego.id is None: ## comprobamos que no exista.
             id = self.buscarIdComponente(juego)
-            if not id == -1: #si no existe, lo creamos
-                q.prepare("INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta)  "
-                    "VALUES ( :nombre, :minJugadores, :maxJugadores, :dificultad, :genero, :propietario, :fecha_alta)")
+            if id == -1: #si no existe, lo creamos
+                q.prepare("INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta, descripcion, observaciones)  "
+                    "VALUES ( :nombre, :minJugadores, :maxJugadores, :dificultad, :genero, :propietario, :fecha_alta, :descripcion, :observaciones)")
+                q.bindValue(":fecha_alta", str(Herramientas.fechaActual()))
             else:
-                juego.id = id
-        if juego.id is not None: ##si el ide no está vacio, es un update
-            q.prepare( "UPDATE SET juegos "
-                       "nombre = :nombre,  min_jugadores = :minJugadores, max_jugadores = :maxJugadores, dificultad = :dificultad, genero = :genero, propietario = :propietario "
-                       "WHERE id = :id ")
+                juego.id = id # no lo creamos porque ya existe. lo actualizamos
+
+        if juego.id is not None: ##si el id no está vacio, es un update
+            q.prepare("UPDATE juegos SET "
+                      "nombre = :nombre,  min_jugadores = :minJugadores, max_jugadores = :maxJugadores, dificultad = :dificultad,"
+                      "descripcion = :descripcion, observaciones = :observaciones, genero = :genero, propietario = :propietario "
+                      "WHERE id = :id ")
             q.bindValue(":id", juego.id)
 
         q.bindValue(":nombre", juego.nombre)
         q.bindValue(":minJugadores", str(juego.minJugadores))
         q.bindValue(":maxJugadores", str(juego.maxJugadores))
+        q.bindValue(":genero", str(juego.genero))
+        q.bindValue(":descripcion", juego.descripcion)
+        q.bindValue(":observaciones", juego.observaciones)
 
         if juego.dificultad is None:
             q.bindValue(":dificultad", "")
@@ -197,9 +205,8 @@ class Database():
                juego.propietario = self.guardarPropietario(juego.propietario)
             q.bindValue(":propietario", str(juego.propietario.id))
 
-        q.bindValue(":genero", str(juego.genero))
-        q.bindValue(":fecha_alta", str(Herramientas.fechaActual()))
         if q.exec_():
+
             print("Juego guardado")
             return True
         else:

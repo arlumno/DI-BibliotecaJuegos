@@ -10,16 +10,14 @@ import var
 class Informes():
 
     def configReport():
-        var.configReport = {"fileDb" :'informes/listadoclientes.pdf',
-                            "fileDbEmpty": 'informes',
-                            "tituloInforme": "Listado de Clientes",
+        var.configReport = {"rutaArchivoPdf":'listado_juegos.pdf',
+                            "directorioInformes": 'informes',
+                            "tituloInforme": "Listado de Juegos",
                             "autorInforme": "Armando Castro",
-                            # "logoEmpresa": ".\\recursos\logo_ies_teis.jpg",
-                            "logoEmpresa": "recursos/logo_ies_teis.jpg",
-                            "cifEmpresa": "A-12345678",
-                            "nombreEmpresa": "Ies de Teis s.l.",
-                            "direccionEmpresa": "Avenida Galicia, 101 - 36216 Vigo (Pontevedra)",
-                            "telefonoEmpresa": "886 12 04 64"
+                            "logoEmpresa": "recursos/logo_dados.png",
+                            "nombreEmpresa": "Asociacion Viguesa de juegos de mesa.",
+                            "direccionEmpresa": "Avenida Galicia, 9999 - 36216 Vigo (Pontevedra)",
+                            "telefonoEmpresa": "897 12 04 64"
                             }
 
     def reportCli():
@@ -31,9 +29,9 @@ class Informes():
             var.report.setFont('Helvetica-Bold', size=13)
             var.report.drawString(55,730, var.configReport['tituloInforme'])
 
-            listadoClientes = Database.obtenerListadoClientes()
+            listadoJuegos = var.db.listadoJuegos();
 
-            Informes.body(listadoClientes)
+            Informes.body(listadoJuegos)
 
             Informes.footer()
 
@@ -52,11 +50,10 @@ class Informes():
             var.report.line(45,820,525,820)
             var.report.line(45,745,525,745)
 
-            var.report.drawString(50,805,var.configReport['cifEmpresa'])
             var.report.drawString(50,790,var.configReport['nombreEmpresa'])
             var.report.drawString(50,775,var.configReport['direccionEmpresa'])
             var.report.drawString(50,760,var.configReport['telefonoEmpresa'])
-            var.report.drawImage(var.configReport['logoEmpresa'], 465, 752,60,60)
+            var.report.drawImage(var.configReport['logoEmpresa'], 455, 752,60,60)
             Informes.subHeader()
 
         except Exception as error:
@@ -64,25 +61,28 @@ class Informes():
 
     def subHeader():
         var.report.line(45, 722, 525, 722)
-        tituloColumnas = ['Código', 'Dni', "Apellidos", "Nombre", "Fecha Alta"]
-        var.report.setFont("Helvetica", size=10)
-        var.report.drawString(45, 710, tituloColumnas[0])
-        var.report.drawString(100, 710, tituloColumnas[1])
-        var.report.drawString(185, 710, tituloColumnas[2])
-        var.report.drawString(325, 710, tituloColumnas[3])
-        var.report.drawString(465, 710, tituloColumnas[4])
+        var.report.setFont("Helvetica", size=9)
+        var.report.drawString(45, 710, 'Cod.')
+        var.report.drawString(80, 710, 'Nombre')
+        var.report.drawString(185, 710, "Jugadores")
+        var.report.drawString(245, 710, "Genero")
+        var.report.drawString(340, 710, "Dificultad")
+        var.report.drawString(405, 710, "Propietario")
+        var.report.drawString(475, 710, "Fecha Alta")
         var.report.line(45, 703, 525, 703)
 
-    def body(listadoClientes):
+    def body(listadoJuegos):
         i = 675
         j = i
-        var.report.setFont('Helvetica', size=10)
-        for cliente in listadoClientes:
-            var.report.drawString(52, j, str(cliente['codigo']))
-            var.report.drawString(95, j, str(cliente['dni']))
-            var.report.drawString(180, j, str(cliente['apellidos']))
-            var.report.drawString(332, j, str(cliente['nombre']))
-            var.report.drawRightString(515, j, str(cliente['fecha_alta']))
+        var.report.setFont('Helvetica', size=8)
+        for juego in listadoJuegos:
+            var.report.drawString(50, j, str(juego.id))
+            var.report.drawString(70, j, juego.nombre)
+            var.report.drawString(200, j, (str(juego.minJugadores) + " - " + str(juego.maxJugadores)))
+            var.report.drawString(240, j, juego.genero)
+            var.report.drawString(345, j, juego.dificultad.dificultad)
+            var.report.drawString(410, j, juego.propietario.nombre)
+            var.report.drawRightString(525, j, str(juego.fechaAlta))
             j = j - 30
             if j < 70:
                 Informes.footer()
@@ -94,7 +94,7 @@ class Informes():
         try:
             var.report.setFont("Helvetica", size=7)
             var.report.line(50,50,525,50)
-            fecha = tools.Tools.fechaActual('%d.%m.%Y %H.%M.%S')
+            fecha = Herramientas.fechaActual('%d.%m.%Y %H.%M.%S')
             var.report.drawString(460,40, fecha)
             var.report.drawString(275,40, str('Página %s' % var.report.getPageNumber()))
             var.report.drawString(50,40, var.configReport['tituloInforme'] + "  Autor: " + var.configReport['autorInforme'])
