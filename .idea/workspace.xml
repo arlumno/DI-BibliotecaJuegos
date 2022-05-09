@@ -4,7 +4,9 @@
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejemploImportar.xls" beforeDir="false" afterPath="$PROJECT_DIR$/ejemploImportar.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +108,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/database.py</url>
-          <line>216</line>
+          <line>257</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

@@ -130,7 +130,6 @@ class Acciones():
                     elif cabecera == "observaciones": index[i] = "observaciones"
                     elif cabecera == "propietario": index[i] = "propietario"
                     elif cabecera == "fecha_alta": index[i] = "fecha_alta"
-                print(index)
                 #campos obligatorios
                 if "nombre" not in index.values() or "minJugadores" not in index.values() or "maxJugadores" not in index.values():
                     Herramientas.ventanaAdvertencia("Faltan campos obligatorios en el archivo.")
@@ -159,7 +158,7 @@ class Acciones():
                                 juego.propietario = var.propietariosByNombre[campos["propietario"]]
                             else:
                                 juego.propietario = Propietario(None,campos["propietario"])
-
+                        print(juego)
                         listadoJuegos.append(juego)
 
                     Acciones.importarJuegos(listadoJuegos)
@@ -173,12 +172,11 @@ class Acciones():
     def importarJuegos(listadoJuegos):
         listaStr = ""
         for juego in listadoJuegos:
-            listaStr = listaStr + str(juego) + "\n"
+            listaStr = listaStr + str(juego.nombre) + "\n"
         if Herramientas.ventanaConfirmacion("Hay un total de " + str(
                 len(listadoJuegos)) + " Juegos para importar. Los Juegos existentes se actualizarán. \n¿Está seguro?",
                                             "Importar Juegos", None, listaStr
                                             ):
-            print("error")
             var.db.guardarListadoJuegos(listadoJuegos)
             constructor.Constructor.cargarListadoJuegos()
 

@@ -168,49 +168,90 @@ class Database():
     def guardarJuego(self,juego):
         q = QtSql.QSqlQuery()
 
-        if juego.id is None: ## es un insert.
-            q.prepare(
-                "INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta)  "
-                "VALUES ( :nombre, :minJugadores, :maxJugadores, :dificultad, :genero, :propietario, :fecha_alta)")
-
-            q.bindValue(":nombre", juego.nombre)
-            q.bindValue(":minJugadores", str(juego.minJugadores))
-            q.bindValue(":maxJugadores", str(juego.maxJugadores))
-
-            if juego.dificultad is None:
-                q.bindValue(":dificultad", "")
+        if juego.id is None: ## comprobamos que no exista.
+            id = self.buscarIdComponente(juego)
+            if not id == -1: #si no existe, lo creamos
+                q.prepare("INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta)  "
+                    "VALUES ( :nombre, :minJugadores, :maxJugadores, :dificultad, :genero, :propietario, :fecha_alta)")
             else:
-                q.bindValue(":dificultad", str(juego.dificultad.id))
+                juego.id = id
+        if juego.id is not None: ##si el ide no está vacio, es un update
+            q.prepare( "UPDATE SET juegos "
+                       "nombre = :nombre,  min_jugadores = :minJugadores, max_jugadores = :maxJugadores, dificultad = :dificultad, genero = :genero, propietario = :propietario "
+                       "WHERE id = :id ")
+            q.bindValue(":id", juego.id)
 
-            if juego.propietario is None:
-                q.bindValue(":propietario", "")
-            # elif juego.propietario.id is None: #si el propietario no existe. se busca o crea uno nuevo
-            #     if juego.propietario.nombre in var.propietariosByNombre:
-            #         juego.
-            else:
-                q.bindValue(":propietario", str(juego.propietario.id))
-                q.bindValue(":propietario", str(juego.propietario.id))
+        q.bindValue(":nombre", juego.nombre)
+        q.bindValue(":minJugadores", str(juego.minJugadores))
+        q.bindValue(":maxJugadores", str(juego.maxJugadores))
 
-            q.bindValue(":genero", str(juego.genero))
+        if juego.dificultad is None:
+            q.bindValue(":dificultad", "")
+        else:
+            q.bindValue(":dificultad", str(juego.dificultad.id))
 
-            q.bindValue(":fecha_alta", str(Herramientas.fechaActual()))
+        if juego.propietario is None:
+            q.bindValue(":propietario", "")
+        else:
+            if juego.propietario.id is None: #si el propietario no existe. se busca o crea uno nuevo
+               juego.propietario = self.guardarPropietario(juego.propietario)
+            q.bindValue(":propietario", str(juego.propietario.id))
 
-            print("Juego guardado")
-        else: ##es un update
-            #TODO
-            print("juego actualizado")
+        q.bindValue(":genero", str(juego.genero))
+        q.bindValue(":fecha_alta", str(Herramientas.fechaActual()))
         if q.exec_():
+            print("Juego guardado")
             return True
         else:
-            print("Error al guardar cliente: ", q.lastError().text())
+            print("Error al guardar juego: ", q.lastError().text())
             return False
 
-#    def guardarListadoJuegos(listadoJuegos):
+    def guardarListadoJuegos(self,listadoJuegos):
+        for juego in listadoJuegos:
+            self.guardarJuego(juego)
 
-    def guardarPropietario(propietario):
+    def buscarIdComponente(self,componente):
+        q = QtSql.QSqlQuery()
+
+        if isinstance(componente,Juego):
+            q.prepare("SELECT id FROM juegos WHERE nombre = :nombre ")
+            q.bindValue(":nombre", componente.nombre)
+
+        elif isinstance(componente, Juego):
+            q.prepare("SELECT id FROM propietarios WHERE nombre = :nombre ")
+            q.bindValue(":nombre", componente.nombre)
+
+        if q.exec_():
+            if q.next():
+                return q.value(0)
+        return -1
+
+    def guardarPropietario(self,propietario):
         if propietario.id is None:
-
-        else: #TODO actualiza
+            #compruebo si existe:
+            q = QtSql.QSqlQuery()
+            q.prepare("SELECT id FROM propietarios WHERE nombre = :nombre ")
+            q.bindValue(":nombre", propietario.nombre)
+            if q.exec_():
+                if q.next():
+                    print("El propietario: "+ propietario.nombre + " ya existe.")
+                    propietario.id = q.value(0)
+                else:
+                    q = QtSql.QSqlQuery()
+                    q.prepare(
+                        "INSERT INTO propietarios (nombre)  "
+                        "VALUES ( :nombre)")
+                    q.bindValue(":nombre", propietario.nombre)
+                    if q.exec_():
+                        print("Nuevo propietario guardado.")
+                        propietario.id = q.lastInsertId()
+                    else:
+                        print("Error al guardar propietario: ", q.lastError().text())
+                return propietario
+            else:
+                print("Error al consultar propietario: ", q.lastError().text())
+       # else:
+            #TODO actualiza
 
 
 
