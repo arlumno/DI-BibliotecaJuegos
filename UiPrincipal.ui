@@ -26,11 +26,19 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">/*
-font: 10pt &quot;MS Gothic&quot; ;
-color: rgb(0, 0, 0);
-background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(53, 136, 236, 255), stop:1 rgba(170, 200, 255, 255));
-*/</string>
+   <string notr="true">QPushButton{
+	background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(178, 236, 255, 255), stop:1 rgba(255, 255, 255, 255));
+    border-radius: 3px;
+	border: 1px solid gray;
+
+}
+QComboBox{
+	border: 1px solid gray;
+    border-radius: 3px;
+}
+
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -83,7 +91,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         <x>20</x>
         <y>120</y>
         <width>841</width>
-        <height>421</height>
+        <height>411</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -167,7 +175,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <property name="geometry">
        <rect>
         <x>2</x>
-        <y>3</y>
+        <y>10</y>
         <width>871</width>
         <height>31</height>
        </rect>
@@ -192,7 +200,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>39</y>
+        <y>40</y>
         <width>841</width>
         <height>71</height>
        </rect>
@@ -205,7 +213,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
         <rect>
          <x>10</x>
          <y>17</y>
-         <width>661</width>
+         <width>671</width>
          <height>45</height>
         </rect>
        </property>
@@ -310,6 +318,19 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
              <widget class="QComboBox" name="cbMinJugadores"/>
             </item>
             <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QLabel" name="label_6">
               <property name="text">
                <string>Max.</string>
@@ -361,9 +382,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <widget class="QPushButton" name="bReiniciarFiltros">
        <property name="geometry">
         <rect>
-         <x>760</x>
+         <x>754</x>
          <y>17</y>
-         <width>75</width>
+         <width>81</width>
          <height>46</height>
         </rect>
        </property>
@@ -372,19 +393,19 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
        </property>
        <property name="icon">
         <iconset resource="iconos.qrc">
-         <normaloff>:/icons/recursos/borrar.png</normaloff>:/icons/recursos/borrar.png</iconset>
+         <normaloff>:/icons/recursos/eliminar_filtros.png</normaloff>:/icons/recursos/eliminar_filtros.png</iconset>
        </property>
        <property name="iconSize">
         <size>
-         <width>20</width>
-         <height>20</height>
+         <width>24</width>
+         <height>24</height>
         </size>
        </property>
       </widget>
       <widget class="QPushButton" name="bFiltrar">
        <property name="geometry">
         <rect>
-         <x>680</x>
+         <x>677</x>
          <y>17</y>
          <width>75</width>
          <height>46</height>
@@ -395,15 +416,28 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
        </property>
        <property name="icon">
         <iconset resource="iconos.qrc">
-         <normaloff>:/icons/recursos/filter.png</normaloff>:/icons/recursos/filter.png</iconset>
+         <normaloff>:/icons/recursos/filtrar.png</normaloff>:/icons/recursos/filtrar.png</iconset>
        </property>
        <property name="iconSize">
         <size>
-         <width>20</width>
-         <height>20</height>
+         <width>24</width>
+         <height>24</height>
         </size>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>31</x>
+        <y>532</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>- doble click para ver juego -</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="add">
@@ -417,7 +451,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>10</y>
         <width>871</width>
         <height>31</height>
        </rect>
@@ -631,7 +665,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>40</y>
          <width>151</width>
          <height>271</height>
         </rect>
@@ -658,6 +692,19 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
          <width>24</width>
          <height>24</height>
         </size>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>20</y>
+         <width>111</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>doble click para eliminar</string>
        </property>
       </widget>
      </widget>
@@ -721,10 +768,10 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
    <widget class="QPushButton" name="bSalir">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>592</y>
+      <x>790</x>
+      <y>600</y>
       <width>81</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -736,8 +783,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgb
     </property>
     <property name="iconSize">
      <size>
-      <width>24</width>
-      <height>24</height>
+      <width>20</width>
+      <height>20</height>
      </size>
     </property>
    </widget>

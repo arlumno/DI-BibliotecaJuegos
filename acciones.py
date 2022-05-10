@@ -95,6 +95,7 @@ class Acciones():
             var.db.guardarJuego(juego)
             Acciones.cerrarAddJuego()
             constructor.Constructor.cargarListadoJuegos()
+            constructor.Constructor.cargarUI()
 
     def addPropietario():
         try:
@@ -113,7 +114,8 @@ class Acciones():
         nombre = campo.text()
         if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el propietario "+nombre+"?", "¡Atención!"):
             propietario = Propietario(None, nombre)
-            var.db.eliminarPropetario(propietario)
+            var.db.eliminarPropietario(propietario)
+            constructor.Constructor.cargarUI()
 
 
     def limpiarCamposAddJuegos():

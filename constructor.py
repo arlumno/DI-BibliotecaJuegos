@@ -82,15 +82,18 @@ class Constructor():
                 row += 1
 
     def cargarUI():
+        Constructor.cargarListadoJuegos()
         Constructor.cargarUIGenero()
         Constructor.cargarUIDificultades()
-        Constructor.cargarFiltroMinJugadores()
-        Constructor.cargarFiltroMaxJugadores()
+        Constructor.cargarUIMinJugadores()
+        Constructor.cargarUIMaxJugadores()
         Constructor.cargarUIPropietarios()
 
 
     def cargarUIDificultades():
         try:
+            var.wMain.ui.cbDificultad.clear()
+
             var.wMain.ui.cbDificultad.addItem("")
             var.dAddJuego.ui.cbDificultad.addItem("")
             for i in var.db.listadoDificultades().values():
@@ -102,10 +105,11 @@ class Constructor():
     def cargarUIPropietarios():
         try:
             var.wMain.ui.cbPropietario.clear()
-            var.wMain.ui.cbPropietario.addItem("")
-            var.dAddJuego.ui.cbPropietario.clear()
-            var.dAddJuego.ui.cbPropietario.addItem("")
             var.wMain.ui.lwPropietarios.clear()
+            var.dAddJuego.ui.cbPropietario.clear()
+
+            var.wMain.ui.cbPropietario.addItem("")
+            var.dAddJuego.ui.cbPropietario.addItem("")
             for i in var.db.listadoPropietarios().values():
                 var.wMain.ui.cbPropietario.addItem(i.nombre)
                 var.wMain.ui.lwPropietarios.addItem(i.nombre)
@@ -115,16 +119,19 @@ class Constructor():
 
 
 
-    def cargarFiltroMinJugadores():
+    def cargarUIMinJugadores():
         try:
+            var.wMain.ui.cbMinJugadores.clear()
+
             var.wMain.ui.cbMinJugadores.addItem("")
             for i in var.db.listadoMinJugadores():
                 var.wMain.ui.cbMinJugadores.addItem(str(i))
         except Exception as error:
             print("Error al cargar cbMinJugadores: " + str(error))
 
-    def cargarFiltroMaxJugadores():
+    def cargarUIMaxJugadores():
         try:
+            var.wMain.ui.cbMaxJugadores.clear()
             var.wMain.ui.cbMaxJugadores.addItem("")
             for i in var.db.listadoMaxJugadores():
                 var.wMain.ui.cbMaxJugadores.addItem(str(i))
@@ -136,6 +143,7 @@ class Constructor():
             listadoGeneros = []
             if listadoGeneros.count("") == 0 :
                 listadoGeneros = var.db.listadoGeneros()
+            var.wMain.ui.cbGenero.clear()
             var.wMain.ui.cbGenero.addItem("")
             var.dAddJuego.ui.cbGenero.addItem("")
             for i in listadoGeneros:
@@ -144,12 +152,12 @@ class Constructor():
         except Exception as error:
             print("Error al cargar cbMaxJugadores: " + str(error))
 
-    def cargarListaPropietarios():
-        try:
-            for i in var.db.listadoPropietarios().values():
-                var.wMain.ui.lwPropietarios.addItem(i.nombre)
-        except Exception as error:
-            print("Error al cargar propietarios: " + str(error))
+    # def cargarListaPropietarios():
+    #     try:
+    #         for i in var.db.listadoPropietarios().values():
+    #             var.wMain.ui.lwPropietarios.addItem(i.nombre)
+    #     except Exception as error:
+    #         print("Error al cargar propietarios: " + str(error))
 
 
     def cargarJuego(idJuego):

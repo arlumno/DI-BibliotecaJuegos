@@ -233,7 +233,7 @@ class Database():
             q.prepare("SELECT id FROM juegos WHERE nombre = :nombre ")
             q.bindValue(":nombre", componente.nombre)
 
-        elif isinstance(componente, Juego):
+        elif isinstance(componente, Propietario):
             q.prepare("SELECT id FROM propietarios WHERE nombre = :nombre ")
             q.bindValue(":nombre", componente.nombre)
 
@@ -291,6 +291,8 @@ class Database():
                         print("Error al eliminar propietarios de juegos : ", q.lastError().text())
                 else:
                     print("Error al eliminar propietario: ", q.lastError().text())
+            else:
+                print("El propietario no existe")
                 #actualizamos juegos
 # ******************************************************************************************************************************************************
 

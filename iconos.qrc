@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="icons">
+    <file>.gitignore</file>
+    <file>recursos/editar.png</file>
+    <file>recursos/eliminar_filtros.png</file>
+    <file>recursos/filtrar.png</file>
     <file>recursos/salida.png</file>
     <file>recursos/logo_dados.png</file>
     <file>recursos/add-user.png</file>

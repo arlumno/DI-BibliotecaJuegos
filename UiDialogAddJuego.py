@@ -15,6 +15,18 @@ class Ui_DialogAddJuego(object):
     def setupUi(self, DialogAddJuego):
         DialogAddJuego.setObjectName("DialogAddJuego")
         DialogAddJuego.resize(522, 554)
+        DialogAddJuego.setStyleSheet("QPushButton{\n"
+"    background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(178, 236, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    border-radius: 3px;\n"
+"    border: 1px solid gray;\n"
+"\n"
+"}\n"
+"QComboBox{\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 3px;\n"
+"    min-width: 6em;\n"
+"}\n"
+"")
         self.label_17 = QtWidgets.QLabel(DialogAddJuego)
         self.label_17.setGeometry(QtCore.QRect(30, 250, 91, 29))
         self.label_17.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -70,7 +82,7 @@ class Ui_DialogAddJuego(object):
         self.bAddPropietario = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         self.bAddPropietario.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/recursos/plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/recursos/add-user.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bAddPropietario.setIcon(icon)
         self.bAddPropietario.setObjectName("bAddPropietario")
         self.horizontalLayout_2.addWidget(self.bAddPropietario)

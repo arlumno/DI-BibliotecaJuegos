@@ -15,6 +15,18 @@ class Ui_DialogAddPropietario(object):
     def setupUi(self, DialogAddPropietario):
         DialogAddPropietario.setObjectName("DialogAddPropietario")
         DialogAddPropietario.resize(324, 133)
+        DialogAddPropietario.setStyleSheet("QPushButton{\n"
+"    background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(178, 236, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    border-radius: 3px;\n"
+"    border: 1px solid gray;\n"
+"\n"
+"}\n"
+"QComboBox{\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 3px;\n"
+"    min-width: 6em;\n"
+"}\n"
+"")
         self.label = QtWidgets.QLabel(DialogAddPropietario)
         self.label.setGeometry(QtCore.QRect(20, 50, 61, 61))
         self.label.setText("")

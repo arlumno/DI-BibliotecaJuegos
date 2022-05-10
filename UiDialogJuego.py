@@ -15,6 +15,18 @@ class Ui_DialogJuego(object):
     def setupUi(self, DialogJuego):
         DialogJuego.setObjectName("DialogJuego")
         DialogJuego.resize(510, 556)
+        DialogJuego.setStyleSheet("QPushButton{\n"
+"    background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(178, 236, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    border-radius: 3px;\n"
+"    border: 1px solid gray;\n"
+"\n"
+"}\n"
+"QComboBox{\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 3px;\n"
+"    min-width: 6em;\n"
+"}\n"
+"")
         self.label_17 = QtWidgets.QLabel(DialogJuego)
         self.label_17.setGeometry(QtCore.QRect(30, 190, 91, 29))
         self.label_17.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -183,6 +195,13 @@ class Ui_DialogJuego(object):
         self.bEliminar.setIcon(icon)
         self.bEliminar.setIconSize(QtCore.QSize(24, 24))
         self.bEliminar.setObjectName("bEliminar")
+        self.bEditar = QtWidgets.QPushButton(DialogJuego)
+        self.bEditar.setGeometry(QtCore.QRect(140, 510, 91, 31))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/icons/recursos/editar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bEditar.setIcon(icon1)
+        self.bEditar.setIconSize(QtCore.QSize(20, 20))
+        self.bEditar.setObjectName("bEditar")
 
         self.retranslateUi(DialogJuego)
         QtCore.QMetaObject.connectSlotsByName(DialogJuego)
@@ -211,4 +230,5 @@ class Ui_DialogJuego(object):
         self.label_8.setText(_translate("DialogJuego", "Juego"))
         self.bCerrar.setText(_translate("DialogJuego", "Cerrar"))
         self.bEliminar.setText(_translate("DialogJuego", "Eliminar"))
+        self.bEditar.setText(_translate("DialogJuego", "Eliminar"))
 import iconos_rc
