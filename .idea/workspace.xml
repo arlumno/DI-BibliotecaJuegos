@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/iconos_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/iconos_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiPrincipal.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constructor.py" beforeDir="false" afterPath="$PROJECT_DIR$/constructor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,12 +26,12 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/constructor.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -101,6 +106,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

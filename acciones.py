@@ -209,11 +209,7 @@ class Acciones():
         except Exception as error:
             print("Error al abrir la ventana de Log: " + str(error))
 
-    def addToLog(msg):
-        try:
-            var.dLog.ui.etLog.appendPlainText("[" + Herramientas.fechaActual("%H:%M:%S %d/%m/%Y") +"] \n   "+ str(msg))
-        except Exception as error:
-            print("Error en el Log" + str(error))
+
 
     def eliminarBD():
         if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
@@ -223,7 +219,57 @@ class Acciones():
             #     Herramientas.ventanaAdvertencia("Error al eliminar registros")
             constructor.Constructor.cargarListadoJuegos()
 
+    def exportarBD():
+        try:
+            archivoSalida = str(Herramientas.fechaActual('%Y.%m.%d.%H.%M.%S')) + '_copia.zip'
+            option = QtWidgets.QFileDialog.Options()
+            directorio, archivo = var.dFileOpen.getSaveFileName(None,"Descargar Copia",archivoSalida, '.zip', options=option)
+            if var.dFileOpen.Accepted and archivo != '':
+                archivoZip = zipfile.ZipFile(archivoSalida,'w')
+                archivoZip.write(var.db.fileDb, os.path.basename(var.db.fileDb),zipfile.ZIP_DEFLATED)
+                archivoZip.close()
+                Acciones.anunciarStatusBar("Base de datos exportada con éxito")
+                shutil.move(str(archivoSalida),str(directorio))
 
+        except Exception as error:
+            print("Error al exportar la base de datos: " + str(error))
+
+    def importarBD():
+        try:
+            dirName, fileName = var.dFileOpen.getOpenFileName(None,None,None,"*.zip *.ZIP",)
+
+            if dirName and Herramientas.ventanaConfirmacion("¿Estas seguro de impotar la BD? Se perderán los datos actuales","¡Atención!",None,dirName):
+                archivoZip = zipfile.ZipFile(dirName, 'r')
+
+                var.db.disconnect()  #desconectamos para poder renombrar la base de datos actual
+                os.replace(var.db.fileDb, var.db.fileDb + "_backup") #le cambiamos el nombre y la dejamos como copia de seguridad
+
+                try:
+                    archivoZip.extract(var.db.fileDb) #extraemos la base de datos del archivo zip.
+                    Acciones.anunciarStatusBar("Base de datos restaurada")
+                    constructor.Constructor.cargarUI()
+                    Herramientas.ventanaAdvertencia("Base de datos restaurada con éxito.")
+                except Exception as error: #si da error, deshacemos el cambio.
+                    os.replace(var.db.fileDb+ "_backup", var.db.fileDb)  # le cambiamos el nombre y la dejamos como copia de seguridad
+                    Herramientas.ventanaAdvertencia("No se ha podido importar la Base de datos","error",str(error))
+
+                var.db.connect() #conectamos de nuevo la bd.
+                Acciones.cargarClientes()
+
+
+        except Exception as error:
+            Herramientas.ventanaAdvertencia("No se ha podido importar la Base de datos","error",str(error))
+
+    def anunciarStatusBar(msg):
+        var.wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual() + "] " + msg)
+        Acciones.addToLog(msg)
+
+    def addToLog(msg):
+        try:
+            var.dLog.ui.etLog.appendPlainText(
+                "[" + Herramientas.fechaActual("%H:%M:%S %d/%m/%Y") + "] \n   " + str(msg))
+        except Exception as error:
+            print("Error en el Log" + str(error))
     # ******************************************************************************************************************************************************
 
 
@@ -545,9 +591,7 @@ class Acciones():
 
 
 
-    def anunciarStatusBar(msg):
-        var.menu.lbStatus.setText("["+ Herramientas.fechaActual() + "] "+msg)
-        Acciones.addToLog(msg)
+
 
     def abrirCarpeta():
         try:
@@ -555,47 +599,47 @@ class Acciones():
         except Exception as error:
             print("Error al abrir el explorador: " + str(error))
 
-    # def descargarBd():
-    #     try:
-    #         archivoSalida = str(Herramientas.fechaActual('%Y.%m.%d.%H.%M.%S')) + '_backup.zip'
-    #         option = QtWidgets.QFileDialog.Options()
-    #         directorio, archivo = var.dFileOpen.getSaveFileName(None,"Descargar Copia",archivoSalida, '.zip', options=option)
-    #         if var.dFileOpen.Accepted and archivo != '':
-    #             archivoZip = zipfile.ZipFile(archivoSalida,'w')
-    #             archivoZip.write(var.fileDb, os.path.basename(var.fileDb),zipfile.ZIP_DEFLATED)
-    #             archivoZip.close()
-    #             Acciones.anunciarStatusBar("Base de datos descargada con éxito")
-    #             shutil.move(str(archivoSalida),str(directorio))
-    #
-    #     except Exception as error:
-    #         print("Error al descargar la base de datos: " + str(error))
-    #
-    # def restaurarBd():
-    #     try:
-    #         dirName, fileName = var.dFileOpen.getOpenFileName(None,None,None,"*.zip *.ZIP",)
-    #
-    #         if dirName and Herramientas.ventanaConfirmacion("Estas seguro de restaurar la BD","¡Atención!",None,dirName):
-    #             archivoZip = zipfile.ZipFile(dirName, 'r')
-    #
-    #             database.Database.disconnect()  #desconectamos para poder renombrar la base de datos actual
-    #             os.replace(var.fileDb, var.fileDb + "_last") #le cambiamos el nombre y la dejamos como copia de seguridad
-    #
-    #             try:
-    #                 archivoZip.extract(var.fileDb) #extraemos la base de datos del archivo zip.
-    #                 Acciones.anunciarStatusBar("Base de datos restaurada")
-    #                 Acciones.cargarListaClientes()
-    #                 Herramientas.ventanaAdvertencia("Base de datos restaurada con éxito.")
-    #             except Exception as error: #si da error, deshacemos el cambio.
-    #                 os.replace(var.fileDb + "_last", var.fileDb)  # le cambiamos el nombre y la dejamos como copia de seguridad
-    #                 Herramientas.ventanaAdvertencia("No se ha podido restaurar la Base de datos","error",str(error))
-    #
-    #             database.Database.connect() #conectamos de nuevo la bd.
-    #             Acciones.cargarClientes()
-    #
-    #
-    #     except Exception as error:
-    #         Herramientas.ventanaAdvertencia("No se ha podido restaurar la Base de datos","error",str(error))
-    #
+    def descargarBd():
+        try:
+            archivoSalida = str(Herramientas.fechaActual('%Y.%m.%d.%H.%M.%S')) + '_backup.zip'
+            option = QtWidgets.QFileDialog.Options()
+            directorio, archivo = var.dFileOpen.getSaveFileName(None,"Descargar Copia",archivoSalida, '.zip', options=option)
+            if var.dFileOpen.Accepted and archivo != '':
+                archivoZip = zipfile.ZipFile(archivoSalida,'w')
+                archivoZip.write(var.fileDb, os.path.basename(var.fileDb),zipfile.ZIP_DEFLATED)
+                archivoZip.close()
+                Acciones.anunciarStatusBar("Base de datos descargada con éxito")
+                shutil.move(str(archivoSalida),str(directorio))
+
+        except Exception as error:
+            print("Error al descargar la base de datos: " + str(error))
+
+    def restaurarBd():
+        try:
+            dirName, fileName = var.dFileOpen.getOpenFileName(None,None,None,"*.zip *.ZIP",)
+
+            if dirName and Herramientas.ventanaConfirmacion("Estas seguro de restaurar la BD","¡Atención!",None,dirName):
+                archivoZip = zipfile.ZipFile(dirName, 'r')
+
+                database.Database.disconnect()  #desconectamos para poder renombrar la base de datos actual
+                os.replace(var.fileDb, var.fileDb + "_last") #le cambiamos el nombre y la dejamos como copia de seguridad
+
+                try:
+                    archivoZip.extract(var.fileDb) #extraemos la base de datos del archivo zip.
+                    Acciones.anunciarStatusBar("Base de datos restaurada")
+                    Acciones.cargarListaClientes()
+                    Herramientas.ventanaAdvertencia("Base de datos restaurada con éxito.")
+                except Exception as error: #si da error, deshacemos el cambio.
+                    os.replace(var.fileDb + "_last", var.fileDb)  # le cambiamos el nombre y la dejamos como copia de seguridad
+                    Herramientas.ventanaAdvertencia("No se ha podido restaurar la Base de datos","error",str(error))
+
+                database.Database.connect() #conectamos de nuevo la bd.
+                Acciones.cargarClientes()
+
+
+        except Exception as error:
+            Herramientas.ventanaAdvertencia("No se ha podido restaurar la Base de datos","error",str(error))
+
 
     #
     # def importarDatos():

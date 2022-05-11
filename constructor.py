@@ -33,7 +33,10 @@ class Constructor():
         #uiMain.bExportarXls.clicked.connect(Acciones.importarXls)
         uiMain.bInformePdf.clicked.connect(informes.Informes.reportCli)
         uiMain.bEliminarBD.clicked.connect(Acciones.eliminarBD)
+        uiMain.bExportarBD.clicked.connect(Acciones.exportarBD)
+        uiMain.bImportarBD.clicked.connect(Acciones.importarBD)
         uiMain.bAddPropietario.clicked.connect(var.dAddPropietario.show)
+
         uiMain.lwPropietarios.itemDoubleClicked.connect(Acciones.eliminarPropietario)
 
         #Barra menu.

@@ -73,7 +73,7 @@ QComboBox{
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="listado">
      <property name="autoFillBackground">
@@ -219,19 +219,6 @@ QComboBox{
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QLabel" name="label">
@@ -318,19 +305,6 @@ QComboBox{
              <widget class="QComboBox" name="cbMinJugadores"/>
             </item>
             <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
              <widget class="QLabel" name="label_6">
               <property name="text">
                <string>Max.</string>
@@ -382,11 +356,17 @@ QComboBox{
       <widget class="QPushButton" name="bReiniciarFiltros">
        <property name="geometry">
         <rect>
-         <x>754</x>
+         <x>734</x>
          <y>17</y>
-         <width>81</width>
+         <width>101</width>
          <height>46</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>Reiniciar</string>
@@ -397,19 +377,25 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>24</width>
-         <height>24</height>
+         <width>30</width>
+         <height>30</height>
         </size>
        </property>
       </widget>
       <widget class="QPushButton" name="bFiltrar">
        <property name="geometry">
         <rect>
-         <x>677</x>
+         <x>640</x>
          <y>17</y>
-         <width>75</width>
+         <width>91</width>
          <height>46</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>Filtrar</string>
@@ -420,8 +406,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>24</width>
-         <height>24</height>
+         <width>30</width>
+         <height>30</height>
         </size>
        </property>
       </widget>
@@ -517,7 +503,7 @@ QComboBox{
         </rect>
        </property>
        <property name="text">
-        <string>Exportar XLS</string>
+        <string>Exportar BD</string>
        </property>
        <property name="icon">
         <iconset resource="iconos.qrc">
@@ -525,8 +511,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -548,8 +534,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -584,8 +570,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -607,8 +593,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -643,8 +629,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -689,8 +675,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>24</width>
-         <height>24</height>
+         <width>30</width>
+         <height>30</height>
         </size>
        </property>
       </widget>
@@ -726,7 +712,7 @@ QComboBox{
          <x>10</x>
          <y>180</y>
          <width>161</width>
-         <height>51</height>
+         <height>61</height>
         </rect>
        </property>
        <property name="text">
@@ -738,8 +724,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -770,7 +756,7 @@ QComboBox{
      <rect>
       <x>790</x>
       <y>600</y>
-      <width>81</width>
+      <width>71</width>
       <height>21</height>
      </rect>
     </property>
@@ -783,9 +769,22 @@ QComboBox{
     </property>
     <property name="iconSize">
      <size>
-      <width>20</width>
-      <height>20</height>
+      <width>16</width>
+      <height>16</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbStatus">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>600</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
