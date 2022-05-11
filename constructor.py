@@ -18,9 +18,6 @@ class Constructor():
         var.dAddPropietario = DialogAddPropietario()
         var.dFileOpen = FileDialogAbrir()
 
-        # var.dCalendar = DialogCalendar()
-        var.dLog = DialogLog()
-
     def cargarEventos():
         #UI Main
         uiMain = var.wMain.ui
@@ -40,9 +37,13 @@ class Constructor():
         uiMain.lwPropietarios.itemDoubleClicked.connect(Acciones.eliminarPropietario)
 
         #Barra menu.
+        uiMain.actionAddJuego.triggered.connect(var.dAddJuego.show)
+        uiMain.actionSalir.triggered.connect(Acciones.salir)
         uiMain.actionImportarXls.triggered.connect(Acciones.importarXls)
         uiMain.actionImprimirPdf.triggered.connect(informes.Informes.reportCli)
         uiMain.actionEliminarBD.triggered.connect(Acciones.eliminarBD)
+        uiMain.actionExportarBD.triggered.connect(Acciones.exportarBD)
+        uiMain.actionImportarBD.triggered.connect(Acciones.importarBD)
 
         #Ui Juego
         var.dJuego.ui.bCerrar.clicked.connect(var.dJuego.hide)

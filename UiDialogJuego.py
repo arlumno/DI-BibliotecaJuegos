@@ -190,6 +190,7 @@ class Ui_DialogJuego(object):
         self.bCerrar.setObjectName("bCerrar")
         self.bEliminar = QtWidgets.QPushButton(DialogJuego)
         self.bEliminar.setGeometry(QtCore.QRect(30, 510, 91, 31))
+        self.bEliminar.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(255, 100,100, 255), stop:1 rgba(255, 255, 255, 255));")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/recursos/remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bEliminar.setIcon(icon)

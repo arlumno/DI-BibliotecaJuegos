@@ -3,11 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022.05.11.14.07.54_backup.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022.05.11.14.15.14_copia.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClasesUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesUi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogCalendar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogCalendar.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogLog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogLog.ui" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constructor.py" beforeDir="false" afterPath="$PROJECT_DIR$/constructor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,15 +37,22 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/constructor.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/constructor.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="15" />
+      <option value="300" />
+    </hideBySeverity>
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="28cDCx5dMx2913ONWrqviO9WCtD" />
   <component name="ProjectLevelVcsManager">
@@ -106,7 +124,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -120,11 +137,6 @@
           <url>file://$PROJECT_DIR$/database.py</url>
           <line>179</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/database.py</url>
-          <line>272</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

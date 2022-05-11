@@ -466,6 +466,9 @@ QComboBox{
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(255, 100,100, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   </property>
    <property name="text">
     <string>Eliminar</string>
    </property>

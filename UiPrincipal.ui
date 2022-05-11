@@ -32,11 +32,10 @@
 	border: 1px solid gray;
 
 }
-QComboBox{
+QComboBox, QLineEdit{
 	border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 2px;
 }
-
 
 </string>
   </property>
@@ -73,7 +72,7 @@ QComboBox{
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="listado">
      <property name="autoFillBackground">
@@ -213,7 +212,7 @@ QComboBox{
         <rect>
          <x>10</x>
          <y>17</y>
-         <width>671</width>
+         <width>641</width>
          <height>45</height>
         </rect>
        </property>
@@ -302,7 +301,14 @@ QComboBox{
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="cbMinJugadores"/>
+             <widget class="QComboBox" name="cbMinJugadores">
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_6">
@@ -315,7 +321,14 @@ QComboBox{
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="cbMaxJugadores"/>
+             <widget class="QComboBox" name="cbMaxJugadores">
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -338,28 +351,15 @@ QComboBox{
           </item>
          </layout>
         </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </widget>
       <widget class="QPushButton" name="bReiniciarFiltros">
        <property name="geometry">
         <rect>
-         <x>734</x>
-         <y>17</y>
-         <width>101</width>
-         <height>46</height>
+         <x>744</x>
+         <y>22</y>
+         <width>91</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
@@ -385,10 +385,10 @@ QComboBox{
       <widget class="QPushButton" name="bFiltrar">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>17</y>
-         <width>91</width>
-         <height>46</height>
+         <x>657</x>
+         <y>22</y>
+         <width>81</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
@@ -464,20 +464,23 @@ QComboBox{
         <x>680</x>
         <y>70</y>
         <width>171</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <property name="title">
-       <string>Gestion de BD</string>
+       <string>Gestión de BD</string>
       </property>
       <widget class="QPushButton" name="bImportarBD">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>120</y>
          <width>149</width>
-         <height>51</height>
+         <height>50</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(255, 100,100, 255), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
         <string>Importar BD</string>
@@ -488,8 +491,8 @@ QComboBox{
        </property>
        <property name="iconSize">
         <size>
-         <width>32</width>
-         <height>32</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -497,7 +500,7 @@ QComboBox{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
+         <y>30</y>
          <width>149</width>
          <height>51</height>
         </rect>
@@ -520,10 +523,13 @@ QComboBox{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>210</y>
+         <y>180</y>
          <width>149</width>
          <height>51</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0 rgba(255, 100,100, 255), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
         <string>Eliminar BD</string>
@@ -546,11 +552,11 @@ QComboBox{
         <x>470</x>
         <y>70</y>
         <width>151</width>
-        <height>171</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="title">
-       <string>Archivos XLS</string>
+       <string>Importar datos</string>
       </property>
       <widget class="QPushButton" name="bImportarXls">
        <property name="geometry">
@@ -575,35 +581,12 @@ QComboBox{
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="bExportarXls">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>100</y>
-         <width>131</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Exportar XLS</string>
-       </property>
-       <property name="icon">
-        <iconset resource="iconos.qrc">
-         <normaloff>:/icons/recursos/xls.png</normaloff>:/icons/recursos/xls.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
         <x>470</x>
-        <y>289</y>
+        <y>220</y>
         <width>151</width>
         <height>101</height>
        </rect>
@@ -779,12 +762,12 @@ QComboBox{
      <rect>
       <x>20</x>
       <y>600</y>
-      <width>61</width>
+      <width>731</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
   </widget>
@@ -801,7 +784,7 @@ QComboBox{
     <property name="title">
      <string>Archivo</string>
     </property>
-    <addaction name="actionAbrir"/>
+    <addaction name="actionAddJuego"/>
     <addaction name="actionSalir"/>
    </widget>
    <widget class="QMenu" name="menuHerramientas">
@@ -810,7 +793,7 @@ QComboBox{
     </property>
     <widget class="QMenu" name="menuBase_de_Datos">
      <property name="title">
-      <string>Base de Datos</string>
+      <string>Gestión de BD</string>
      </property>
      <addaction name="actionImportarBD"/>
      <addaction name="actionExportarBD"/>
@@ -821,7 +804,6 @@ QComboBox{
       <string>XLS</string>
      </property>
      <addaction name="actionImportarXls"/>
-     <addaction name="actionExportarXls"/>
     </widget>
     <addaction name="menuBase_de_Datos"/>
     <addaction name="menuXLS"/>
@@ -848,16 +830,12 @@ QComboBox{
     <bool>false</bool>
    </attribute>
   </widget>
-  <action name="actionAbrir">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/newPrefix/arrow_up [#273].png</normaloff>:/newPrefix/arrow_up [#273].png</iconset>
-   </property>
+  <action name="actionAddJuego">
    <property name="text">
-    <string>Abrir</string>
+    <string>Añadir Juego</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+A</string>
+    <string>Ctrl+Shift+N</string>
    </property>
   </action>
   <action name="actionSalir">
@@ -891,11 +869,6 @@ QComboBox{
   <action name="actionImportarXls">
    <property name="text">
     <string>Importar</string>
-   </property>
-  </action>
-  <action name="actionExportarXls">
-   <property name="text">
-    <string>Exportar</string>
    </property>
   </action>
  </widget>
