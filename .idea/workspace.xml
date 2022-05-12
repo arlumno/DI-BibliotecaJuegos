@@ -3,23 +3,36 @@
   <component name="ChangeListManager">
     <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClasesComponentes.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesComponentes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClasesUi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClasesUi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022.05.12.12.00.33_copia.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiDialogAddJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddJuego.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddPropietario.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddPropietario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiDialogAddPropietario.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogAddPropietario.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiDialogJuego.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiDialogJuego.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiDialogJuego.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UiPrincipal.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UiPrincipal.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/acciones.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.db.bk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.db_backup" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constructor.py" beforeDir="false" afterPath="$PROJECT_DIR$/cargador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/main.exe.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/main.exe.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/xref-main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/xref-main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cargador.py" beforeDir="false" afterPath="$PROJECT_DIR$/cargador.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listado_juegos.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/listado_juegos.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejemploImportar.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/listado_juegos.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var.py" beforeDir="false" afterPath="$PROJECT_DIR$/var.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.spec" beforeDir="false" afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/borrar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/clean.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/clear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/download.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/exit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/filter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/folder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/log.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/reload.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recursos/search.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +51,10 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/cargador.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -125,7 +137,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -137,8 +148,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/database.py</url>
-          <line>178</line>
+          <line>177</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/database.py</url>
+          <line>224</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

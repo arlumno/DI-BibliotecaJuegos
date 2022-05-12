@@ -54,7 +54,7 @@ class Ui_DialogAddPropietario(object):
 
     def retranslateUi(self, DialogAddPropietario):
         _translate = QtCore.QCoreApplication.translate
-        DialogAddPropietario.setWindowTitle(_translate("DialogAddPropietario", "Dialog"))
+        DialogAddPropietario.setWindowTitle(_translate("DialogAddPropietario", "Nevo Propietario"))
         self.label_3.setText(_translate("DialogAddPropietario", "Indica el nombre del Nuevo Propietario"))
         self.bGuardar.setText(_translate("DialogAddPropietario", "Guardar"))
         self.bCancelar.setText(_translate("DialogAddPropietario", "Cancelar"))

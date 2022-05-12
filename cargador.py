@@ -19,7 +19,7 @@ class Cargador():
             var.dAddPropietario = DialogAddPropietario()
             var.dFileOpen = FileDialogAbrir()
         except Exception as error:
-            print("Cargador-> error cargarComponentes s%:" % str(error))
+            print("Cargador-> error cargarComponentes s% " % str(error))
 
     def cargarEventos():
         try:
@@ -64,7 +64,7 @@ class Cargador():
             var.dAddPropietario.ui.bGuardar.clicked.connect(Acciones.addPropietario)
             var.dAddPropietario.ui.bCancelar.clicked.connect(var.dAddPropietario.hide);
         except Exception as error:
-            print("Cargador-> error cargarEventos s%:" % str(error))
+            print("Cargador-> error cargarEventos s% " % str(error))
 
     def cargarListadoJuegos(listadoJuegos = None):
         try:
@@ -94,7 +94,7 @@ class Cargador():
                     var.rowIdJuegos[row] = juego.id
                     row += 1
         except Exception as error:
-            print("Cargador-> error cargarListadoJuegos s%:" % str(error))
+            print("Cargador-> error cargarListadoJuegos s% " % str(error))
 
     def cargarUI():
         try:
@@ -105,7 +105,7 @@ class Cargador():
             Cargador.cargarUIMaxJugadores()
             Cargador.cargarUIPropietarios()
         except Exception as error:
-            print("Cargador-> error cargarUI s%:" % str(error))
+            print("Cargador-> error cargarUI s% " % str(error))
 
     def cargarUIDificultades():
         try:
@@ -118,7 +118,7 @@ class Cargador():
                 var.wMain.ui.cbDificultad.addItem(i.dificultad)
                 var.dAddJuego.ui.cbDificultad.addItem(i.dificultad)
         except Exception as error:
-            print("Cargador-> error cargarUIDificultades s%:" % str(error))
+            print("Cargador-> error cargarUIDificultades s% " % str(error))
 
 
     def cargarUIPropietarios():
@@ -135,7 +135,7 @@ class Cargador():
                 var.dAddJuego.ui.cbPropietario.addItem(i.nombre)
 
         except Exception as error:
-            print("Cargador-> error cargarUIPropietarios s%:" % str(error))
+            print("Cargador-> error cargarUIPropietarios s% " % str(error))
 
 
     def cargarUIMinJugadores():
@@ -146,7 +146,7 @@ class Cargador():
             for i in var.db.listadoMinJugadores():
                 var.wMain.ui.cbMinJugadores.addItem(str(i))
         except Exception as error:
-            print("Cargador-> error cargarUIMinJugadores s%:" % str(error))
+            print("Cargador-> error cargarUIMinJugadores s% " % str(error))
 
     def cargarUIMaxJugadores():
         try:
@@ -155,7 +155,7 @@ class Cargador():
             for i in var.db.listadoMaxJugadores():
                 var.wMain.ui.cbMaxJugadores.addItem(str(i))
         except Exception as error:
-            print("Cargador-> error cargarUIMaxJugadores s%:" % str(error))
+            print("Cargador-> error cargarUIMaxJugadores s% " % str(error))
 
     def cargarUIGenero():
         try:
@@ -169,7 +169,7 @@ class Cargador():
                 var.wMain.ui.cbGenero.addItem(str(i))
                 var.dAddJuego.ui.cbGenero.addItem(str(i))
         except Exception as error:
-            print("Cargador-> error cargarUIGenero s%:" % str(error))
+            print("Cargador-> error cargarUIGenero s% " % str(error))
 
 
     def cargarJuego(idJuego):
@@ -193,6 +193,33 @@ class Cargador():
             var.dJuego.ui.lbCod.setText(str(juego.id))
             var.dJuego.ui.teDescripcion.setPlainText(juego.descripcion)
             var.dJuego.ui.teObservaciones.setPlainText(juego.observaciones)
+        except Exception as error:
+            print("Cargador-> error cargarJuego s% " % str(error))
+
+    def cargarEditarJuego(idJuego):
+        try:
+            juego = var.db.obtenerJuego(idJuego)
+            var.dAddJuego.hide()
+            var.dAddJuego.ui.lbTitulo.setText("Editar Juego")
+            var.dAddJuego.ui.lbCod.setVisible(True)
+            var.dAddJuego.ui.etCod.setVisible(True)
+            var.dAddJuego.ui.etNombre.setText(juego.nombre)
+            if juego.propietario is None:
+                var.dAddJuego.ui.cbPropietario.setCurrentText("")
+            else:
+                var.dAddJuego.ui.cbPropietario.setCurrentText(juego.propietario.nombre)
+
+            if juego.dificultad is None:
+                var.dAddJuego.ui.cbDificultad.setCurrentText("")
+            else:
+                var.dAddJuego.ui.cbDificultad.setCurrentText(juego.dificultad.dificultad)
+
+            var.dAddJuego.ui.etGenero.setText(juego.genero)
+            var.dAddJuego.ui.sbMinJugadores.setValue(int(juego.minJugadores))
+            var.dAddJuego.ui.sbMaxJugadores.setValue(int(juego.maxJugadores))
+            var.dAddJuego.ui.etCod.setText(str(juego.id))
+            var.dAddJuego.ui.teDescripcion.setPlainText(juego.descripcion)
+            var.dAddJuego.ui.teObservaciones.setPlainText(juego.observaciones)
 
         except Exception as error:
-            print("Cargador-> error cargarJuego s%:" % str(error))
+            print("Cargador-> error cargarJuego s% " % str(error))

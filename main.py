@@ -5,18 +5,16 @@ from cargador import Cargador
 from database import Database
 
 if __name__ == '__main__':
-    try:
-        var.db = Database()
-        app = QtWidgets.QApplication([])
+    var.db = Database()
+    app = QtWidgets.QApplication([])
 
-        var.db.connect()
-        Cargador.cargarComponentes()
+    Cargador.cargarComponentes()
 
-        Cargador.cargarUI()
-        Cargador.cargarEventos()
+    var.db.connect()
 
-        var.wMain.show()
-        sys.exit(app.exec())
-    except Exception as error:
-        print("error addPropietario s%:" % str(error))
+    Cargador.cargarUI()
+    Cargador.cargarEventos()
 
+    var.wMain.show()
+
+    sys.exit(app.exec())

@@ -77,13 +77,14 @@ class Acciones():
             print("Acciones-> error --- s%:" % str(error))
 
     def abrirAddJuego():
-        Acciones.limpiarCamposAddJuegos()
-        var.dAddJuego
+        Acciones.restaurarCamposAddJuego()
+        var.dAddJuego.hide()
+        var.dAddJuego.show()
 
     def cerrarAddJuego():
         try:
             var.dAddJuego.hide()
-            Acciones.limpiarCamposAddJuegos()
+            Acciones.restaurarCamposAddJuego()
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
@@ -102,7 +103,8 @@ class Acciones():
                 nombre = var.dAddJuego.ui.etNombre.text()
                 minJugadores = var.dAddJuego.ui.sbMinJugadores.value()
                 maxJugadores = var.dAddJuego.ui.sbMaxJugadores.value()
-                juego = Juego(None, nombre, minJugadores, maxJugadores)
+                id = var.dAddJuego.ui.etCod.text()
+                juego = Juego(id, nombre, minJugadores, maxJugadores)
                 juego.genero = var.dAddJuego.ui.etGenero.text()
                 if not var.dAddJuego.ui.cbDificultad.currentText() == "":
                     juego.dificultad = var.dificultadesByDificultad[str(var.dAddJuego.ui.cbDificultad.currentText())]
@@ -124,11 +126,11 @@ class Acciones():
     def editarJuegoAbierto():
         try:
             var.dJuego.hide()
-            Acciones.limpiarCamposAddJuegos()
-            var.dAddJuego.ui.lbTitulo.setText("Editar Juego")
-            ##TODO cargar juego en ventana
+            Acciones.restaurarCamposAddJuego()
+            id = var.dJuego.ui.lbCod.text()
+            cargador.Cargador.cargarEditarJuego(id)
+            var.dAddJuego.hide()
             var.dAddJuego.show()
-            print("editarJuegoAbierto")
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
@@ -148,7 +150,6 @@ class Acciones():
             if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el juego "+juego.nombre+"?", "¡Atención!"):
                 var.db.eliminarJuego(juego)
                 cargador.Cargador.cargarUI()
-                print("juego "+ juego.nombre +"eliminado")
                 return True
             else:
                 return False
@@ -177,7 +178,7 @@ class Acciones():
             print("Acciones-> error eliminarPropietario s%:" % str(error))
 
 
-    def limpiarCamposAddJuegos():
+    def restaurarCamposAddJuego():
         try:
             var.dAddJuego.ui.etNombre.setText("")
             var.dAddJuego.ui.sbMinJugadores.setValue(1)
@@ -188,9 +189,12 @@ class Acciones():
             var.dAddJuego.ui.teDescripcion.setPlainText("")
             var.dAddJuego.ui.teObservaciones.setPlainText("")
             var.dAddJuego.ui.lbTitulo.setText("Añadir Nuevo Juego")
+            var.dAddJuego.ui.lbCod.setVisible(False)
+            var.dAddJuego.ui.etCod.setVisible(False)
+            var.dAddJuego.ui.etCod.setText("")
 
         except Exception as error:
-            print("Acciones-> error limpiarCamposAddJuegos s%:" % str(error))
+            print("Acciones-> error restaurarCamposAddJuego s%:" % str(error))
 
 
     def importarXls():
@@ -263,7 +267,7 @@ class Acciones():
                                                 "Importar Juegos", None, listaStr
                                                 ):
                 var.db.guardarListadoJuegos(listadoJuegos)
-                cargador.Cargador.cargarListadoJuegos()
+                cargador.Cargador.cargarUI()
         except Exception as error:
             print("Acciones-> error importarJuegos s%:" % str(error))
 
@@ -271,9 +275,8 @@ class Acciones():
         try:
             if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
                 if var.db.eliminarBD():
-                    Herramientas.ventanaAdvertencia("Se han eliminado todos los registros.")
-                # else:
-                #     Herramientas.ventanaAdvertencia("Error al eliminar registros")
+                    Acciones.anunciarStatusBar("Se han eliminado todos los registros.")
+
                 cargador.Cargador.cargarUI()
         except Exception as error:
             print("Acciones-> error eliminarBD s%:" % str(error))
@@ -304,13 +307,15 @@ class Acciones():
 
                 try:
                     archivoZip.extract(var.db.fileDb) #extraemos la base de datos del archivo zip.
+                    var.db.connect() #conectamos de nuevo la bd.
                     Acciones.anunciarStatusBar("Base de datos restaurada")
                     Herramientas.ventanaAdvertencia("Base de datos restaurada con éxito.")
                 except Exception as error: #si da error, deshacemos el cambio.
                     os.replace(var.db.fileDbBackup, var.db.fileDb)  # le cambiamos el nombre y la dejamos como copia de seguridad
+                    var.db.connect() #conectamos de nuevo la bd.
+                    Acciones.anunciarStatusBar("No se ha podido importar la Base de datos","error",str(error))
                     Herramientas.ventanaAdvertencia("No se ha podido importar la Base de datos","error",str(error))
 
-                var.db.connect() #conectamos de nuevo la bd.
                 cargador.Cargador.cargarUI()
 
         except Exception as error:
@@ -318,85 +323,7 @@ class Acciones():
 
     def anunciarStatusBar(msg):
         try:
-            var.    wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual() + "] " + msg)
+            var.wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual("%d/%m/%Y %H:%M:%S") + "] " + msg)
         except Exception as error:
             print("Acciones-> error anunciarStatusBar s%:" % str(error))
-
-
-    # ******************************************************************************************************************************************************
-
-
-
-
-
-
-    # def guardarCambiosCliente():
-    #     try:
-    #         if Acciones.validarCampos():
-    #             clienteModificado = [var.menu.etDni.text(),
-    #                                 var.menu.etApellido.text(),
-    #                                 var.menu.etNombre.text(),
-    #                                 var.menu.etDireccion.text(),
-    #                                 var.menu.etFechaAlta.text(),
-    #                                 var.menu.cbProvincia.currentText(),
-    #                                 var.pago,
-    #                                 var.sexo,
-    #                                 var.menu.sbEnvio.value()]
-    #
-    #             clienteBd = database.Database.obtenerCliente(clienteModificado[0])
-    #             if clienteBd is not None:
-    #                 Acciones.cargarCliente(clienteBd)
-    #
-    #             if Acciones.isClientecargado():
-    #                 if clienteModificado != var.clienteCargado:
-    #                     if Herramientas.ventanaConfirmacion("Confirma Modificar el Cliente:", "Modificar Cliente", str(clienteModificado)):
-    #                         database.Database.modificarCliente(clienteModificado)
-    #                         Acciones.cargarClientes()
-    #                         Herramientas.ventanaAdvertencia("Cliente modificado con éxito.")
-    #                         Acciones.anunciarStatusBar("Cliente con dni " + clienteModificado[0] + " modificado con éxito")
-    #
-    #                 else:
-    #                     Herramientas.ventanaAdvertencia("No hay cambios")
-    #
-    #             else:
-    #                 Herramientas.ventanaAdvertencia("No hay clientes seleccionados")
-    #
-    #     except Exception as error:
-    #         print("Acciones-> error al guardar cliente: " + str(error))
-
-    # def limpiarListadoClientes():
-    #     var.menu.tablaDatos.setRowCount(0)
-
-    # def eliminarClienteSeleccionado():
-    #     try:
-    #         rowCliente = var.menu.tablaDatos.selectedIndexes()[0].row()
-    #         Acciones.cargarCliente(var.listadoClientes[rowCliente])
-    #         Acciones.eliminarCliente()
-    #     except IndexError as error:
-    #         Herramientas.ventanaAdvertencia("No hay clientes seleccionados.")
-    #
-
-    #
-    # def limpiarCamposCliente():
-    #     var.menu.etDni.setText("")
-    #     var.menu.etApellido.setText("")
-    #     var.menu.etNombre.setText("")
-    #     var.menu.etDireccion.setText("")
-    #     var.menu.etFechaAlta.setText("")
-    #     var.menu.flagDni.setText("")
-    #     var.menu.cbProvincia.setCurrentText("")
-    #     var.menu.sbEnvio.setValue(0)
-    #     var.menu.etEnvio.setText(var.listadoEnvios[0])
-    #
-    #     var.menu.rbgSexo.setExclusive(False)
-    #     var.menu.rbMasculino.setChecked(False)
-    #     var.menu.rbFemenino.setChecked(False)
-    #     var.menu.rbgSexo.setExclusive(True)
-    #
-    #     var.menu.chkEfectivo.setChecked(False)
-    #     var.menu.chkTarjeta.setChecked(False)
-    #     var.menu.chkTransfer.setChecked(False)
-    #
-    #     Acciones.descargarCliente()
-    #
 

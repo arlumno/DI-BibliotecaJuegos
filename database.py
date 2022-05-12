@@ -35,7 +35,7 @@ class Database():
                                            'No se puede establecer conexión.', QtWidgets.QMessageBox.Cancel)
             return False
         else:
-            print("Conexión realizada con éxito")
+            acciones.Acciones.anunciarStatusBar("Conexión a la BD realizada con éxito")
         return True
 
     def eliminarBD(self):
@@ -46,7 +46,7 @@ class Database():
 
     def disconnect(self):
         self.db.close()
-        print("Base de datos desconectada.")
+        acciones.Acciones.anunciarStatusBar("Base de datos desconectada.")
 
     def listadoJuegos(self):
         q = QtSql.QSqlQuery()
@@ -178,7 +178,7 @@ class Database():
     def guardarJuego(self,juego):
         q = QtSql.QSqlQuery()
 
-        if juego.id is None: ## comprobamos que no exista.
+        if juego.id is None or juego.id == "": ## comprobamos que no exista.
             id = self.buscarIdComponente(juego)
             if id == -1: #si no existe, lo creamos
                 q.prepare("INSERT INTO juegos (nombre, min_jugadores, max_jugadores, dificultad, genero, propietario, fecha_alta, descripcion, observaciones)  "
@@ -187,7 +187,7 @@ class Database():
             else:
                 juego.id = id # no lo creamos porque ya existe. lo actualizamos
 
-        if juego.id is not None: ##si el id no está vacio, es un update
+        if juego.id is not None: #si el id no está vacio, es un update (no es un else, porque puede haber adquirido el id en las lineas anteriores.
             q.prepare("UPDATE juegos SET "
                       "nombre = :nombre,  min_jugadores = :minJugadores, max_jugadores = :maxJugadores, dificultad = :dificultad,"
                       "descripcion = :descripcion, observaciones = :observaciones, genero = :genero, propietario = :propietario "
@@ -214,16 +214,16 @@ class Database():
             q.bindValue(":propietario", str(juego.propietario.id))
 
         if q.exec_():
-
-            print("Juego guardado")
+            acciones.Acciones.anunciarStatusBar("Juego "+ juego.nombre+" guardado")
             return True
         else:
-            print("Error al guardar juego: ", q.lastError().text())
+            acciones.Acciones.anunciarStatusBar("Error al guardar juego: ", q.lastError().text())
             return False
 
     def guardarListadoJuegos(self,listadoJuegos):
         for juego in listadoJuegos:
             self.guardarJuego(juego)
+        acciones.Acciones.anunciarStatusBar("Listado de juegos guardado")
 
     def buscarIdComponente(self,componente):
         q = QtSql.QSqlQuery()
@@ -257,10 +257,10 @@ class Database():
                         "VALUES ( :nombre)")
                     q.bindValue(":nombre", propietario.nombre)
                     if q.exec_():
-                        print("Nuevo propietario guardado.")
+                        acciones.Acciones.anunciarStatusBar("Nuevo propietario "+ propietario.nombre+" guardado.")
                         propietario.id = q.lastInsertId()
                     else:
-                        print("Error al guardar propietario: ", q.lastError().text())
+                        acciones.Acciones.anunciarStatusBar("Error al guardar propietario: ", q.lastError().text())
                 return propietario
             else:
                 print("Error al consultar propietario: ", q.lastError().text())
@@ -283,13 +283,13 @@ class Database():
                                "WHERE propietario = :id")
                     q2.bindValue(":id", propietario.id)
                     if q2.exec_():
-                        print(" eliminado propietarios de juego")
+                        acciones.Acciones.anunciarStatusBar("Propietario" + propietario.nombre+ " eliminado")
                     else:
-                        print("Error al eliminar propietarios de juegos : ", q.lastError().text())
+                        acciones.Acciones.anunciarStatusBar("Error al eliminar propietarios de juegos : ", q.lastError().text())
                 else:
-                    print("Error al eliminar propietario: ", q.lastError().text())
+                    acciones.Acciones.anunciarStatusBar("Error al eliminar propietario: ", q.lastError().text())
             else:
-                print("El propietario no existe")
+                acciones.Acciones.anunciarStatusBar("Error al eliminar propietario: El propietario no existe")
                 #actualizamos juegos
 
     def eliminarJuego(self,juego):
@@ -301,151 +301,12 @@ class Database():
                     "DELETE FROM juegos WHERE id = :id")
                 q.bindValue(":id", juego.id)
                 if q.exec_():
+                    acciones.Acciones.anunciarStatusBar("Juego " + juego.nombre + " eliminado")
                     return True
                 else:
-                    print("Error al eliminar juego: ", q.lastError().text())
+                    acciones.Acciones.anunciarStatusBar("Error al eliminar juego: ", q.lastError().text())
                     return False
             else:
-                print("El Juego no existe")
+                acciones.Acciones.anunciarStatusBar("Error al eliminar juego: no existe")
                 #actualizamos juegos
 
-
-# ******************************************************************************************************************************************************
-
-
-#     def modificarCliente(cliente):
-#         q = QtSql.QSqlQuery()
-#         print(cliente)
-#         q.prepare(
-#             "UPDATE clientes "
-#             "SET apellidos = :apellidos,  nombre = :nombre, direccion = :direccion, provincia = :provincia, fecha_alta = :fecha_alta, forma_pago = :pago, sexo = :sexo, envio = :envio "
-#             "WHERE dni = :dni ")
-#
-#         q.bindValue(":dni", str(cliente[0]))
-#         q.bindValue(":apellidos", str(cliente[1]))
-#         q.bindValue(":nombre", str(cliente[2]))
-#         q.bindValue(":direccion", str(cliente[3]))
-#         q.bindValue(":fecha_alta", str(cliente[4]))
-#         q.bindValue(":provincia", str(cliente[5]))
-#         q.bindValue(":pago", str(cliente[6]))
-#         q.bindValue(":sexo", str(cliente[7]))
-#         q.bindValue(":envio", str(cliente[8]))
-#
-#         if q.exec_():
-#             return True
-#         else:
-#             print("Error al modificar cliente: ", q.lastError().text())
-#             return False
-#
-
-#     def eliminarCliente(dni):
-#         q = QtSql.QSqlQuery()
-#         if Acciones.Acciones.isClientecargado():
-#             Database.obtenerCliente(dni)
-#             q.prepare(
-#                 "DELETE FROM clientes "
-#                 "WHERE dni = :dni ")
-#             q.bindValue(":dni", dni)
-#
-#             if q.exec_():
-#                 return True
-#             else:
-#                 return False
-#                 print("Error al eliminar cliente: ", q.lastError().text())
-#         else:
-#             Tools.ventanaAdvertencia("El cliente que se intenta borrar no Existe")
-#
-#     def cargarClientes():
-#         q = QtSql.QSqlQuery()
-#         q.prepare(
-#             "SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo, envio FROM clientes")
-#         var.listadoClientes = []
-#         if q.exec_():
-#             while q.next():
-#                 var.listadoClientes.append(
-#                     [q.value(0), q.value(1), q.value(2), q.value(3), q.value(5), q.value(6), q.value(7), q.value(4),
-#                      q.value(8)])
-#
-#         else:
-#             print("Error al cargar clientes: ", q.lastError().text())
-#
-#     def cargarProvincias():
-#         q = QtSql.QSqlQuery()
-#         q.prepare("SELECT provincia FROM provincias")
-#         var.listadoProvincias = [""]
-#         if q.exec_():
-#             while q.next():
-#                 var.listadoProvincias.append(q.value(0))
-#         else:
-#             print("Error al cargar provincias: ", q.lastError().text())
-#
-#     def importarListadoClientes(listadoClientesImportar):
-#         clientesNuevos = 0
-#         clientesActualizados = 0
-#         for cliente in listadoClientesImportar:
-#             if Database.obtenerCliente(cliente[0]) is None:
-#                 if cliente[4] == "":
-#                     cliente[4] = Tools.fechaActual()
-#                 Database.guardarCliente(cliente)
-#                 clientesNuevos += 1
-#             else:
-#                 Database.modificarCliente(cliente)
-#                 clientesActualizados += 1
-#
-#         Tools.ventanaAdvertencia(
-#             "Importación completada.\n Clientes nuevos: " + str(clientesNuevos) + "\n clientes actualizados: " + str(
-#                 clientesActualizados))
-#
-#         Acciones.Acciones.anunciarStatusBar("Importados " + str(len(listadoClientesImportar)) + " clientes")
-#
-#     def filtrarClientes(filtro):
-#         q = QtSql.QSqlQuery()
-#
-#         # q.prepare("SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo FROM clientes WHERE nombre = :filtro")
-#         q.prepare(
-#             "SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo, envio FROM clientes WHERE nombre LIKE :filtro or apellidos LIKE :filtro")
-#
-#         q.bindValue(":filtro", "%" + str(filtro) + "%")
-#
-#         var.listadoClientes = []
-#         if q.exec_():
-#             while q.next():
-#                 var.listadoClientes.append(
-#                     [q.value(0), q.value(1), q.value(2), q.value(3), q.value(5), q.value(6), q.value(7), q.value(4),
-#                      q.value(8)])
-#         else:
-#             print("Error al cargar clientes: ", q.lastError().text())
-#
-#     def borrarClientes():
-#         q = QtSql.QSqlQuery()
-#         q.prepare('DELETE FROM clientes')
-#         if q.exec_():
-#             return True
-#         else:
-#             print("Error al cargar clientes: ", q.lastError().text())
-#             return False
-#
-#     def obtenerListadoClientes():
-#         q = QtSql.QSqlQuery()
-#         q.prepare(
-#             "SELECT dni, apellidos, nombre, direccion, fecha_alta, provincia, forma_pago, sexo, envio, codigo FROM clientes")
-#         listado = []
-#         if q.exec_():
-#             while q.next():
-#                 listado.append(
-#                     {"dni": q.value(0),
-#                      "apellidos": q.value(1),
-#                      "nombre": q.value(2),
-#                      "direccion": q.value(3),
-#                      "fecha_alta": q.value(4),
-#                      "provincia": q.value(5),
-#                      "forma_pago": q.value(6),
-#                      "sexo": q.value(7),
-#                      "envio": q.value(8),
-#                      "codigo": q.value(9)
-#                      }
-#                 )
-#         else:
-#             print("Error al obtener lista de  clientes: ", q.lastError().text())
-#         # print(listado)
-#         return listado

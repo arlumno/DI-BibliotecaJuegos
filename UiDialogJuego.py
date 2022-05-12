@@ -209,7 +209,7 @@ class Ui_DialogJuego(object):
 
     def retranslateUi(self, DialogJuego):
         _translate = QtCore.QCoreApplication.translate
-        DialogJuego.setWindowTitle(_translate("DialogJuego", "Dialog"))
+        DialogJuego.setWindowTitle(_translate("DialogJuego", "Información Juego"))
         self.label_17.setText(_translate("DialogJuego", "Descripción"))
         self.teObservaciones.setPlainText(_translate("DialogJuego", "---"))
         self.label_18.setText(_translate("DialogJuego", "Observaciones"))
