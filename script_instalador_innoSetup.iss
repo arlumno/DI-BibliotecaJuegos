@@ -22,8 +22,8 @@ DefaultDirName={autopf}\Gestor de Juegos By Armando
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=setup_gestor_juegos
-SetupIconFile=C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\app.ico
+OutputBaseFilename=Instalador Gestor Juegos
+SetupIconFile=C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\Proyecto Python\app.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -35,7 +35,7 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\Proyecto Python\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\a20armandocb\Documents\Git-Ar\DI-BibliotecaJuegos\archivos demo\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

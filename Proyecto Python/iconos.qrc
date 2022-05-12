@@ -1,0 +1,21 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>.gitignore</file>
+    <file>recursos/editar.png</file>
+    <file>recursos/eliminar_filtros.png</file>
+    <file>recursos/filtrar.png</file>
+    <file>recursos/salida.png</file>
+    <file>recursos/logo_dados.png</file>
+    <file>recursos/add-user.png</file>
+    <file>recursos/borrar.png</file>
+    <file>recursos/Download Database.png</file>
+    <file>recursos/filter.png</file>
+    <file>recursos/Misc_Upload_Database_Icon_256.png</file>
+    <file>recursos/pdf.png</file>
+    <file>recursos/peligro.png</file>
+    <file>recursos/plus.png</file>
+    <file>recursos/remove.png</file>
+    <file>recursos/Remove_from_database_Icon_256.png</file>
+    <file>recursos/xls.png</file>
+  </qresource>
+</RCC>
