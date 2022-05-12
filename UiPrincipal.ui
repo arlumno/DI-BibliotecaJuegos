@@ -72,7 +72,7 @@ QComboBox, QLineEdit{
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="listado">
      <property name="autoFillBackground">
@@ -98,6 +98,9 @@ QComboBox, QLineEdit{
         <width>841</width>
         <height>0</height>
        </size>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -131,6 +134,10 @@ QComboBox, QLineEdit{
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="icon">
+        <iconset resource="iconos.qrc">
+         <normaloff>:/icons/recursos/logo_dados.png</normaloff>:/icons/recursos/logo_dados.png</iconset>
        </property>
       </column>
       <column>

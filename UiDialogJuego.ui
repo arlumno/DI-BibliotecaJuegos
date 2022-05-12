@@ -493,7 +493,7 @@ QComboBox{
     </rect>
    </property>
    <property name="text">
-    <string>Eliminar</string>
+    <string>Modificar</string>
    </property>
    <property name="icon">
     <iconset resource="iconos.qrc">

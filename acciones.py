@@ -6,7 +6,7 @@ import sys
 
 from PyQt5 import QtWidgets
 
-import constructor
+import cargador
 import var
 from ClasesComponentes import *
 from Herramientas import Herramientas
@@ -22,80 +22,138 @@ class Acciones():
             else:
                 var.dSalir.hide()
         except Exception as error:
-            print("error s%:" % str(error))
+            print("Acciones-> error s%:" % str(error))
 
     def filtrarListado():
-        filtros = {}
-        filtros["nombre"] = var.wMain.ui.etNombre.text()
-        if not var.wMain.ui.cbGenero.currentText() == "":
-            filtros["genero"] = var.wMain.ui.cbGenero.currentText()
-        if not var.wMain.ui.cbDificultad.currentText() == "":
-            for dificultad in var.db.listadoDificultades().values():
-                if var.wMain.ui.cbDificultad.currentText() == dificultad.dificultad :
-                    filtros["dificultad"] = dificultad.id
-        if not var.wMain.ui.cbMinJugadores.currentText() == "":
-            filtros["min_jugadores"] = var.wMain.ui.cbMinJugadores.currentText()
-        if not var.wMain.ui.cbMaxJugadores.currentText() == "":
-            filtros["max_jugadores"] = var.wMain.ui.cbMaxJugadores.currentText()
-        if not var.wMain.ui.cbPropietario.currentText() == "":
-            for propietario in var.db.listadoPropietarios().values():
-                if var.wMain.ui.cbPropietario.currentText() == propietario.nombre:
-                    filtros["propietario"] = propietario.id
-        constructor.Constructor.cargarListadoJuegos(var.db.listadoJuegosFiltrado(filtros))
+        try:
+            filtros = {}
+            filtros["nombre"] = var.wMain.ui.etNombre.text()
+            if not var.wMain.ui.cbGenero.currentText() == "":
+                filtros["genero"] = var.wMain.ui.cbGenero.currentText()
+            if not var.wMain.ui.cbDificultad.currentText() == "":
+                for dificultad in var.db.listadoDificultades().values():
+                    if var.wMain.ui.cbDificultad.currentText() == dificultad.dificultad :
+                        filtros["dificultad"] = dificultad.id
+            if not var.wMain.ui.cbMinJugadores.currentText() == "":
+                filtros["min_jugadores"] = var.wMain.ui.cbMinJugadores.currentText()
+            if not var.wMain.ui.cbMaxJugadores.currentText() == "":
+                filtros["max_jugadores"] = var.wMain.ui.cbMaxJugadores.currentText()
+            if not var.wMain.ui.cbPropietario.currentText() == "":
+                for propietario in var.db.listadoPropietarios().values():
+                    if var.wMain.ui.cbPropietario.currentText() == propietario.nombre:
+                        filtros["propietario"] = propietario.id
+            cargador.Cargador.cargarListadoJuegos(var.db.listadoJuegosFiltrado(filtros))
+        except Exception as error:
+            print("Acciones-> error filtrarListado s%:" % str(error))
 
     def reiniciarFiltros():
-        var.wMain.ui.etNombre.setText("")
-        var.wMain.ui.cbGenero.setCurrentText("")
-        var.wMain.ui.cbDificultad.setCurrentText("")
-        var.wMain.ui.cbMinJugadores.setCurrentText("")
-        var.wMain.ui.cbMaxJugadores.setCurrentText("")
-        var.wMain.ui.cbPropietario.setCurrentText("")
-        var.wMain.ui.cbGenero.setCurrentText("")
-        var.wMain.ui.cbGenero.setCurrentText("")
-        constructor.Constructor.cargarListadoJuegos()
+        try:
+            var.wMain.ui.etNombre.setText("")
+            var.wMain.ui.cbGenero.setCurrentText("")
+            var.wMain.ui.cbDificultad.setCurrentText("")
+            var.wMain.ui.cbMinJugadores.setCurrentText("")
+            var.wMain.ui.cbMaxJugadores.setCurrentText("")
+            var.wMain.ui.cbPropietario.setCurrentText("")
+            var.wMain.ui.cbGenero.setCurrentText("")
+            var.wMain.ui.cbGenero.setCurrentText("")
+            cargador.Cargador.cargarListadoJuegos()
+        except Exception as error:
+            print("Acciones-> error reiniciarFiltros s%:" % str(error))
 
     def abrirJuegoSeleccionado():
-        rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
-        idJuego = var.rowIdJuegos[rowJuego]
-        # print(str(idJuego))
-        Acciones.abrirJuego(idJuego)
+        try:
+            rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
+            idJuego = var.rowIdJuegos[rowJuego]
+            Acciones.abrirJuego(idJuego)
+        except Exception as error:
+            print("Acciones-> error abrirJuegoSeleccionado s%:" % str(error))
 
     def abrirJuego(idJuego):
-        # print(str(idJuego))
-        var.dJuego.hide()
-        constructor.Constructor.cargarJuego(idJuego)
-        var.dJuego.show()
+        try:
+            var.dJuego.hide()
+            cargador.Cargador.cargarJuego(idJuego)
+            var.dJuego.show()
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
+
+    def abrirAddJuego():
+        Acciones.limpiarCamposAddJuegos()
+        var.dAddJuego
 
     def cerrarAddJuego():
-        var.dAddJuego.hide()
-        Acciones.limpiarCamposAddJuegos()
+        try:
+            var.dAddJuego.hide()
+            Acciones.limpiarCamposAddJuegos()
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
 
     def aplicarGenero(genero):
-        var.dAddJuego.ui.etGenero.setText(genero)
-        var.dAddJuego.ui.cbGenero.setCurrentText("")
+        try:
+            var.dAddJuego.ui.etGenero.setText(genero)
+            var.dAddJuego.ui.cbGenero.setCurrentText("")
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
 
     def guardarJuego():
-        if var.dAddJuego.ui.etNombre.text() == "":
-            Herramientas.ventanaAdvertencia("El campo 'Nombre' es obligatorio")
-        else:
-            nombre = var.dAddJuego.ui.etNombre.text()
-            minJugadores = var.dAddJuego.ui.sbMinJugadores.value()
-            maxJugadores = var.dAddJuego.ui.sbMaxJugadores.value()
-            juego = Juego(None, nombre, minJugadores, maxJugadores)
-            juego.genero = var.dAddJuego.ui.etGenero.text()
-            if not var.dAddJuego.ui.cbDificultad.currentText() == "":
-                juego.dificultad = var.dificultadesByDificultad[str(var.dAddJuego.ui.cbDificultad.currentText())]
+        try:
+            if var.dAddJuego.ui.etNombre.text() == "":
+                Herramientas.ventanaAdvertencia("El campo 'Nombre' es obligatorio")
+            else:
+                nombre = var.dAddJuego.ui.etNombre.text()
+                minJugadores = var.dAddJuego.ui.sbMinJugadores.value()
+                maxJugadores = var.dAddJuego.ui.sbMaxJugadores.value()
+                juego = Juego(None, nombre, minJugadores, maxJugadores)
+                juego.genero = var.dAddJuego.ui.etGenero.text()
+                if not var.dAddJuego.ui.cbDificultad.currentText() == "":
+                    juego.dificultad = var.dificultadesByDificultad[str(var.dAddJuego.ui.cbDificultad.currentText())]
 
-            if not var.dAddJuego.ui.cbPropietario.currentText() == "":
-                juego.propietario = var.propietariosByNombre[str(var.dAddJuego.ui.cbPropietario.currentText())]
+                if not var.dAddJuego.ui.cbPropietario.currentText() == "":
+                    juego.propietario = var.propietariosByNombre[str(var.dAddJuego.ui.cbPropietario.currentText())]
 
-            juego.descripcion = var.dAddJuego.ui.teDescripcion.toPlainText()
-            juego.observaciones = var.dAddJuego.ui.teObservaciones.toPlainText()
+                juego.descripcion = var.dAddJuego.ui.teDescripcion.toPlainText()
+                juego.observaciones = var.dAddJuego.ui.teObservaciones.toPlainText()
 
-            var.db.guardarJuego(juego)
-            Acciones.cerrarAddJuego()
-            constructor.Constructor.cargarListadoJuegos()
-            constructor.Constructor.cargarUI()
+                var.db.guardarJuego(juego)
+                Acciones.cerrarAddJuego()
+                cargador.Cargador.cargarListadoJuegos()
+                cargador.Cargador.cargarUI()
+
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
+
+    def editarJuegoAbierto():
+        try:
+            var.dJuego.hide()
+            Acciones.limpiarCamposAddJuegos()
+            var.dAddJuego.ui.lbTitulo.setText("Editar Juego")
+            ##TODO cargar juego en ventana
+            var.dAddJuego.show()
+            print("editarJuegoAbierto")
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
+
+    def eliminarJuegoAbierto():
+        try:
+            id = var.dJuego.ui.lbCod.text()
+            nombre = var.dJuego.ui.lbNombre.text()
+            juego = Juego(id,nombre)
+            if Acciones.eliminarJuego(juego):
+                var.dJuego.hide()
+
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
+
+    def eliminarJuego(juego):
+        try:
+            if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el juego "+juego.nombre+"?", "¡Atención!"):
+                var.db.eliminarJuego(juego)
+                cargador.Cargador.cargarUI()
+                print("juego "+ juego.nombre +"eliminado")
+                return True
+            else:
+                return False
+        except Exception as error:
+            print("Acciones-> error --- s%:" % str(error))
 
     def addPropietario():
         try:
@@ -104,34 +162,37 @@ class Acciones():
                 print(propietario.nombre)
                 var.db.guardarPropietario(propietario)
                 var.dAddPropietario.hide()
-                constructor.Constructor.cargarUIPropietarios()
-
-
+                cargador.Cargador.cargarUIPropietarios()
         except Exception as error:
-            print("error addPropietario s%:" % str(error))
+            print("Acciones-> error addPropietario s%:" % str(error))
 
     def eliminarPropietario(campo):
-        nombre = campo.text()
-        if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el propietario "+nombre+"?", "¡Atención!"):
-            propietario = Propietario(None, nombre)
-            var.db.eliminarPropietario(propietario)
-            constructor.Constructor.cargarUI()
+        try:
+            nombre = campo.text()
+            if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el propietario "+nombre+"?", "¡Atención!"):
+                propietario = Propietario(None, nombre)
+                var.db.eliminarPropietario(propietario)
+                cargador.Cargador.cargarUI()
+        except Exception as error:
+            print("Acciones-> error eliminarPropietario s%:" % str(error))
 
 
     def limpiarCamposAddJuegos():
-        var.dAddJuego.ui.etNombre.setText("")
-        var.dAddJuego.ui.sbMinJugadores.setValue(1)
-        var.dAddJuego.ui.sbMaxJugadores.setValue(1)
+        try:
+            var.dAddJuego.ui.etNombre.setText("")
+            var.dAddJuego.ui.sbMinJugadores.setValue(1)
+            var.dAddJuego.ui.sbMaxJugadores.setValue(1)
+            var.dAddJuego.ui.etGenero.setText("")
+            var.dAddJuego.ui.cbDificultad.setCurrentText("")
+            var.dAddJuego.ui.cbPropietario.setCurrentText("")
+            var.dAddJuego.ui.teDescripcion.setPlainText("")
+            var.dAddJuego.ui.teObservaciones.setPlainText("")
+            var.dAddJuego.ui.lbTitulo.setText("Añadir Nuevo Juego")
 
-        var.dAddJuego.ui.etGenero.setText("")
-        var.dAddJuego.ui.cbDificultad.setCurrentText("")
-        var.dAddJuego.ui.cbPropietario.setCurrentText("")
+        except Exception as error:
+            print("Acciones-> error limpiarCamposAddJuegos s%:" % str(error))
 
-        var.dAddJuego.ui.teDescripcion.setPlainText("")
-        var.dAddJuego.ui.teObservaciones.setPlainText("")
 
-    # def guardarPropietario():
-    #     db
     def importarXls():
         try:
             dirName, fileName = var.dFileOpen.getOpenFileName(None, None, None, "*.xls *.XLS", )
@@ -190,34 +251,32 @@ class Acciones():
                     Herramientas.ventanaAdvertencia("No hay datos para importar en el archivo")
 
         except Exception as error:
-            Herramientas.ventanaAdvertencia("No se han podido importar los datos", "error", str(error))
+            print("Acciones-> error importarXls s%:" % str(error))
 
     def importarJuegos(listadoJuegos):
-        listaStr = ""
-        for juego in listadoJuegos:
-            listaStr = listaStr + str(juego.nombre) + "\n"
-        if Herramientas.ventanaConfirmacion("Hay un total de " + str(
-                len(listadoJuegos)) + " Juegos para importar. Los Juegos existentes se actualizarán. \n¿Está seguro?",
-                                            "Importar Juegos", None, listaStr
-                                            ):
-            var.db.guardarListadoJuegos(listadoJuegos)
-            constructor.Constructor.cargarListadoJuegos()
-
-    def abrirLog():
         try:
-            var.dLog.show()
+            listaStr = ""
+            for juego in listadoJuegos:
+                listaStr = listaStr + str(juego.nombre) + "\n"
+            if Herramientas.ventanaConfirmacion("Hay un total de " + str(
+                    len(listadoJuegos)) + " Juegos para importar. Los Juegos existentes se actualizarán. \n¿Está seguro?",
+                                                "Importar Juegos", None, listaStr
+                                                ):
+                var.db.guardarListadoJuegos(listadoJuegos)
+                cargador.Cargador.cargarListadoJuegos()
         except Exception as error:
-            print("Error al abrir la ventana de Log: " + str(error))
-
-
+            print("Acciones-> error importarJuegos s%:" % str(error))
 
     def eliminarBD():
-        if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
-            if var.db.eliminarBD():
-                Herramientas.ventanaAdvertencia("Se han eliminado todos los registros.")
-            # else:
-            #     Herramientas.ventanaAdvertencia("Error al eliminar registros")
-            constructor.Constructor.cargarUI()
+        try:
+            if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
+                if var.db.eliminarBD():
+                    Herramientas.ventanaAdvertencia("Se han eliminado todos los registros.")
+                # else:
+                #     Herramientas.ventanaAdvertencia("Error al eliminar registros")
+                cargador.Cargador.cargarUI()
+        except Exception as error:
+            print("Acciones-> error eliminarBD s%:" % str(error))
 
     def exportarBD():
         try:
@@ -230,9 +289,8 @@ class Acciones():
                 archivoZip.close()
                 Acciones.anunciarStatusBar("Base de datos exportada con éxito")
                 shutil.move(str(archivoSalida),str(directorio))
-
         except Exception as error:
-            print("Error al exportar la base de datos: " + str(error))
+                print("Acciones-> error exportarBD s%:" % str(error))
 
     def importarBD():
         try:
@@ -253,14 +311,16 @@ class Acciones():
                     Herramientas.ventanaAdvertencia("No se ha podido importar la Base de datos","error",str(error))
 
                 var.db.connect() #conectamos de nuevo la bd.
-                constructor.Constructor.cargarUI()
-
+                cargador.Cargador.cargarUI()
 
         except Exception as error:
-            Herramientas.ventanaAdvertencia("No se ha podido importar la Base de datos","error",str(error))
+            print("Acciones-> error importarBD s%:" % str(error))
 
     def anunciarStatusBar(msg):
-        var.wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual() + "] " + msg)
+        try:
+            var.    wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual() + "] " + msg)
+        except Exception as error:
+            print("Acciones-> error anunciarStatusBar s%:" % str(error))
 
 
     # ******************************************************************************************************************************************************
@@ -302,7 +362,7 @@ class Acciones():
     #                 Herramientas.ventanaAdvertencia("No hay clientes seleccionados")
     #
     #     except Exception as error:
-    #         print("Error al guardar cliente: " + str(error))
+    #         print("Acciones-> error al guardar cliente: " + str(error))
 
     # def limpiarListadoClientes():
     #     var.menu.tablaDatos.setRowCount(0)

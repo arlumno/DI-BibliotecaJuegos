@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets, QtSql
 import var
 import acciones
 from ClasesComponentes import *
-import constructor
+import cargador
 from Herramientas import Herramientas
 
 
@@ -91,7 +91,6 @@ class Database():
             juego.observaciones = q.value(9)
 
             listado.append(juego)
-
         return listado
 
     def listadoPropietarios(self):
@@ -228,7 +227,6 @@ class Database():
 
     def buscarIdComponente(self,componente):
         q = QtSql.QSqlQuery()
-
         if isinstance(componente,Juego):
             q.prepare("SELECT id FROM juegos WHERE nombre = :nombre ")
             q.bindValue(":nombre", componente.nombre)
@@ -266,8 +264,7 @@ class Database():
                 return propietario
             else:
                 print("Error al consultar propietario: ", q.lastError().text())
-        # else:
-            #TODO actualiza
+
 
     def eliminarPropietario(self,propietario):
             if propietario.id is None:
@@ -295,7 +292,22 @@ class Database():
                 print("El propietario no existe")
                 #actualizamos juegos
 
-
+    def eliminarJuego(self,juego):
+            if juego.id is None:
+                juego.id = self.buscarIdComponente(juego)
+            if juego.id != -1:
+                q = QtSql.QSqlQuery()
+                q.prepare(
+                    "DELETE FROM juegos WHERE id = :id")
+                q.bindValue(":id", juego.id)
+                if q.exec_():
+                    return True
+                else:
+                    print("Error al eliminar juego: ", q.lastError().text())
+                    return False
+            else:
+                print("El Juego no existe")
+                #actualizamos juegos
 
 
 # ******************************************************************************************************************************************************

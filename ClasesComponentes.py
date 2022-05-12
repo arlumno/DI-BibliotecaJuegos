@@ -1,5 +1,5 @@
 class Juego():
-    def __init__(self, id, nombre, min_jugadores, max_jugadores):
+    def __init__(self, id, nombre, min_jugadores = 1, max_jugadores = 1):
         self.id = id
         self.nombre = nombre
         self.minJugadores = min_jugadores

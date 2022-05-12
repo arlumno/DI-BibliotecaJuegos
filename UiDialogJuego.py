@@ -231,5 +231,5 @@ class Ui_DialogJuego(object):
         self.label_8.setText(_translate("DialogJuego", "Juego"))
         self.bCerrar.setText(_translate("DialogJuego", "Cerrar"))
         self.bEliminar.setText(_translate("DialogJuego", "Eliminar"))
-        self.bEditar.setText(_translate("DialogJuego", "Eliminar"))
+        self.bEditar.setText(_translate("DialogJuego", "Modificar"))
 import iconos_rc
