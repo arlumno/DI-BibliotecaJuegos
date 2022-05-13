@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 
 from UiDialogAddJuego import Ui_DialogAddJuego
@@ -12,6 +13,11 @@ class Main(QtWidgets.QMainWindow):
         super(Main, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+    #este metodo sobreescrito permite cerrar la aplicación por completo al cerrar la ventana de main en el boton superior izquierdo X
+    def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
+        print("exit")
+        sys.exit()
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):

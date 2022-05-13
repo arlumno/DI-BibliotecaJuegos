@@ -14,7 +14,6 @@ if __name__ == '__main__':
 
     Cargador.cargarUI()
     Cargador.cargarEventos()
-
     var.wMain.show()
 
     sys.exit(app.exec())

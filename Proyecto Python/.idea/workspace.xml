@@ -1,72 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/DI-BibliotecaJuegos.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2022.05.11.19.04.59_copia.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClasesComponentes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClasesUi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Herramientas.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Output/setup_gestor_juegos.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogAddJuego.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogAddJuego.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogAddPropietario.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogAddPropietario.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogJuego.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogJuego.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogSalir.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiDialogSalir.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiPrincipal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UiPrincipal.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../acciones.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.db.bk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.empty.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/Analysis-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/EXE-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/PKG-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/PYZ-00.pyz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/PYZ-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/Tree-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/Tree-01.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/Tree-02.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/base_library.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/main.exe.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/main.pkg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/warn-main.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build/main/xref-main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cargador.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dist/main.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../iconos.qrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../iconos_rc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../informes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main.spec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/Download Database.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/Misc_Upload_Database_Icon_256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/Remove_from_database_Icon_256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/add-user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/editar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/eliminar_filtros.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/filtrar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/logo_dados.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/peligro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/remove.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/salida.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../recursos/xls.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../script_instalador_innoSetup.iss" beforeDir="false" afterPath="$PROJECT_DIR$/../script_instalador_innoSetup.iss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../var.py" beforeDir="false" />
-    </list>
+    <list default="true" id="84bae276-5993-409e-a963-de044de29125" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,11 +19,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/var.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ClasesComponentes.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ClasesUi.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -170,6 +105,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
