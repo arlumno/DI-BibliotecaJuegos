@@ -21,6 +21,7 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarComponentes s% " % str(error))
 
+    #asigna eventos y sus acciones a los campos y botones de la UI
     def cargarEventos():
         try:
             #UI Main
@@ -95,7 +96,7 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarListadoJuegos s% " % str(error))
 
-    def cargarUI():
+    def cargarUI():#carga todos los datos en los campos de todas las ventanas
         try:
             Cargador.cargarListadoJuegos()
             Cargador.cargarUIGenero()
