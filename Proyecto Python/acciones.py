@@ -11,7 +11,7 @@ import var
 from ClasesComponentes import *
 from Herramientas import Herramientas
 
-
+# la mayoría de estos métodos son intermediarios con el objeto cruz Database, por eso tienen el mismo nombre.
 class Acciones():
 
     def salir():
@@ -24,6 +24,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error s%:" % str(error))
 
+    #aplica los filtros a la tabla de juegos de la UI.
     def filtrarListado():
         try:
             filtros = {}
@@ -46,6 +47,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error filtrarListado s%:" % str(error))
 
+    #elimina los filtros de la tabla de juegos de la UI.
     def reiniciarFiltros():
         try:
             var.wMain.ui.etNombre.setText("")
@@ -60,6 +62,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error reiniciarFiltros s%:" % str(error))
 
+    #Abre un Juego seleccionado en la tabla de juegos de la UI
     def abrirJuegoSeleccionado():
         try:
             rowJuego = var.wMain.ui.twListadoJuegos.selectedIndexes()[0].row()
@@ -68,19 +71,22 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error abrirJuegoSeleccionado s%:" % str(error))
 
+    #Carga un juego en la ventana dJuego y muestra la ventana.
     def abrirJuego(idJuego):
         try:
-            var.dJuego.hide()
+            var.dJuego.hide() #para reiniciar la posición, si está abierta.
             cargador.Cargador.cargarJuego(idJuego)
             var.dJuego.show()
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    # Abre la ventana dAddJuego.
     def abrirAddJuego():
         Acciones.restaurarCamposAddJuego()
-        var.dAddJuego.hide()
+        var.dAddJuego.hide() #para reiniciar la posición, si está abierta.
         var.dAddJuego.show()
 
+    #Cierra la ventana dAddJuego y limpia los campos
     def cerrarAddJuego():
         try:
             var.dAddJuego.hide()
@@ -88,6 +94,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    #Asistente comboBox para el campo generos en dAddJuego
     def aplicarGenero(genero):
         try:
             var.dAddJuego.ui.etGenero.setText(genero)
@@ -95,6 +102,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    #Valida y guarda un juego desde la ventana AddJuego, puede ser nuevo o una modificación
     def guardarJuego():
         try:
             if var.dAddJuego.ui.etNombre.text() == "":
@@ -123,6 +131,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    # Carga un juego en la ventana dAddJuego y muestra la ventana. (para realizar modificaciones)
     def editarJuegoAbierto():
         try:
             var.dJuego.hide()
@@ -134,6 +143,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    #elimina el juego abierto en la ventana dJuego
     def eliminarJuegoAbierto():
         try:
             id = var.dJuego.ui.lbCod.text()
@@ -145,6 +155,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    #elimina un juego, con ventana de confirmación
     def eliminarJuego(juego):
         try:
             if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar el juego "+juego.nombre+"?", "¡Atención!"):
@@ -156,6 +167,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error --- s%:" % str(error))
 
+    #crea un nuevo propietario desde la ventana dAddPropietario
     def addPropietario():
         try:
             if var.dAddPropietario.ui.etNombre.text() != "":
@@ -167,6 +179,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error addPropietario s%:" % str(error))
 
+    #elimina un Propietario por su nombre
     def eliminarPropietario(campo):
         try:
             nombre = campo.text()
@@ -177,7 +190,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error eliminarPropietario s%:" % str(error))
 
-
+    #limpia todos los campos de la ventana dAddJuego
     def restaurarCamposAddJuego():
         try:
             var.dAddJuego.ui.etNombre.setText("")
@@ -196,7 +209,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error restaurarCamposAddJuego s%:" % str(error))
 
-
+    #procesa un archivo XLS, lo pasa a un listado de objetos Juego y lo importa
     def importarXls():
         try:
             dirName, fileName = var.dFileOpen.getOpenFileName(None, None, None, "*.xls *.XLS", )
@@ -257,6 +270,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error importarXls s%:" % str(error))
 
+    #guarda un listado de Juegos en la Bd, con ventana para confirmar la operación
     def importarJuegos(listadoJuegos):
         try:
             listaStr = ""
@@ -271,6 +285,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error importarJuegos s%:" % str(error))
 
+    #elimina la BD, con ventana para confirmar la operación
     def eliminarBD():
         try:
             if Herramientas.ventanaConfirmacion("¿Estas seguro de Eliminar todos los registros de la Base De Datos?", "¡Atención!"):
@@ -281,6 +296,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error eliminarBD s%:" % str(error))
 
+    #exporta una copia comprimida a Zip de la BD
     def exportarBD():
         try:
             archivoSalida = str(Herramientas.fechaActual('%Y.%m.%d.%H.%M.%S')) + '_copia.zip'
@@ -295,6 +311,7 @@ class Acciones():
         except Exception as error:
                 print("Acciones-> error exportarBD s%:" % str(error))
 
+    #sutituye la BD por una copia externa en formato zip.
     def importarBD():
         try:
             dirName, fileName = var.dFileOpen.getOpenFileName(None,None,None,"*.zip *.ZIP",)
@@ -321,6 +338,7 @@ class Acciones():
         except Exception as error:
             print("Acciones-> error importarBD s%:" % str(error))
 
+    #muestra un mensaje con marca de tiempo en la Barra de Estado
     def anunciarStatusBar(msg):
         try:
             var.wMain.ui.lbStatus.setText("[" + Herramientas.fechaActual("%d/%m/%Y %H:%M:%S") + "] " + msg)

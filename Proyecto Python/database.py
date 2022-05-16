@@ -21,13 +21,15 @@ class Database():
     def __init__(self):
         self.db = None
 
+    #se conecta a la BD, si no existe, crea una BD vacía copiandola.
     def connect(self):
         if not os.path.isfile(self.fileDb):
+            # para modo desarrollo, trabaja con los archivos locales
             if os.path.isfile(self.fileDbEmpty):
-                shutil.copy(self.fileDbEmpty, self.fileDb) #para modo desarrollo
+                shutil.copy(self.fileDbEmpty, self.fileDb)
+            # para la versión instalable, copia la Bd de la carpeta temporal.
             else:
                 shutil.copy(sys._MEIPASS+'/'+self.fileDbEmpty, self.fileDb)
-
         self.db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.db.setDatabaseName(self.fileDb)
         if not self.db.open():
@@ -38,16 +40,21 @@ class Database():
             acciones.Acciones.anunciarStatusBar("Conexión a la BD realizada con éxito")
         return True
 
+    #elimina la BD
     def eliminarBD(self):
         self.disconnect()
         os.remove(self.fileDb);
         self.connect()
         return True
 
+    # desconecta la BD
     def disconnect(self):
         self.db.close()
         acciones.Acciones.anunciarStatusBar("Base de datos desconectada.")
 
+## OPERACIONES CRUD ##
+
+    #obtiene una lista de todos los juegos en la BD
     def listadoJuegos(self):
         q = QtSql.QSqlQuery()
         q.prepare(self.consultaJuegos)
@@ -58,6 +65,7 @@ class Database():
             print("DB - Error al obtener listado de juegos: ", q.lastError().text())
         return listado
 
+    #obtiene un juego de la BD
     def obtenerJuego(self, idJuego):
         q = QtSql.QSqlQuery()
         q.prepare(self.consultaJuegos + " WHERE id = :id")
@@ -70,6 +78,7 @@ class Database():
             print("DB - Error al obtener juego: ", q.lastError().text())
         return juego
 
+    #procesa los resultados de la consulta y compone el objeto Juego
     def procesarConsultaJuegos(self,q):
         propietarios = self.listadoPropietarios();
         dificultades = self.listadoDificultades();
@@ -93,6 +102,7 @@ class Database():
             listado.append(juego)
         return listado
 
+    #obtiene una lista de todos los propietarios de los juegos en la BD
     def listadoPropietarios(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT id, nombre FROM propietarios")
@@ -110,6 +120,7 @@ class Database():
 
         return listado
 
+    #obtiene una lista de todas las Dificultades de los juegos en la BD
     def listadoDificultades(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT id, dificultad FROM dificultad")
@@ -125,6 +136,7 @@ class Database():
         var.dificultadesByDificultad = dificultadesByDificultad
         return listado
 
+    #obtiene un rango de Mínimo de jugadores, basado en las existente en la BD, se utiliza para filtros.
     def listadoMinJugadores(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT distinct(min_jugadores) FROM juegos ORDER BY min_jugadores")
@@ -137,6 +149,7 @@ class Database():
 
         return listado
 
+    #obtiene un rango de Máximo de jugadores, basado en las existente en la BD, se utiliza para filtros.
     def listadoMaxJugadores(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT distinct(max_jugadores) FROM juegos ORDER BY max_jugadores")
@@ -148,6 +161,7 @@ class Database():
             print("DB - Error al obtener listado de max jugadores: ", q.lastError().text())
         return listado
 
+    #obtiene una lista de generos utilizados en los Juegos de la BD, se utiliza parara asistir a la creación de juegos.
     def listadoGeneros(self):
         q = QtSql.QSqlQuery()
         q.prepare("SELECT distinct(genero) FROM juegos ORDER BY genero")
@@ -159,6 +173,7 @@ class Database():
             print("DB - Error al obtener listado de generos: ", q.lastError().text())
         return listado
 
+    #obtiene una lista de juegos aplicandole filtros.
     def listadoJuegosFiltrado(self, filtros):
         q = QtSql.QSqlQuery()
         consulta = self.consultaJuegos + " WHERE nombre LIKE :nombre"
@@ -175,6 +190,7 @@ class Database():
 
         return listado
 
+    #guarda un juego en la BD, si no tiene ID será un juego nuevo, si la tiene será una modificación
     def guardarJuego(self,juego):
         q = QtSql.QSqlQuery()
 
@@ -220,11 +236,13 @@ class Database():
             acciones.Acciones.anunciarStatusBar("Error al guardar juego: ", q.lastError().text())
             return False
 
+    #Guarda una lista de juegos en la bd, (se usa para importación de datos)
     def guardarListadoJuegos(self,listadoJuegos):
         for juego in listadoJuegos:
             self.guardarJuego(juego)
         acciones.Acciones.anunciarStatusBar("Listado de juegos guardado")
 
+    #comprueba si un componente (Juego o Propietario), con el mismo nombre existe en la BD, devuelve la ID en caso afirmativo o -1 si no la cuentra
     def buscarIdComponente(self,componente):
         q = QtSql.QSqlQuery()
         if isinstance(componente,Juego):
@@ -240,6 +258,7 @@ class Database():
                 return q.value(0)
         return -1
 
+    #Guarda un nuevo Propietario en la BD
     def guardarPropietario(self,propietario):
         if propietario.id is None:
             #compruebo si existe:
@@ -265,7 +284,7 @@ class Database():
             else:
                 print("Error al consultar propietario: ", q.lastError().text())
 
-
+    # elimina un propietario de la BD de la tabla propietarios y del campo propietarios en la tabla juegos
     def eliminarPropietario(self,propietario):
             if propietario.id is None:
                 propietario.id = self.buscarIdComponente(propietario)
@@ -292,6 +311,7 @@ class Database():
                 acciones.Acciones.anunciarStatusBar("Error al eliminar propietario: El propietario no existe")
                 #actualizamos juegos
 
+    # elimina un juego de la BD
     def eliminarJuego(self,juego):
             if juego.id is None:
                 juego.id = self.buscarIdComponente(juego)

@@ -4,11 +4,13 @@ from PyQt5.QtWidgets import QMessageBox
 
 
 class Herramientas():
+    #devuelve la fecha actual, formato por defecto: "%d/%m/%Y"
     def fechaActual(format= "%d/%m/%Y"):
         fecha = datetime.today()
         fecha = fecha.strftime(format)
         return str(fecha)
 
+    #muestra ventana de advertencia con los datos indicados
     def ventanaAdvertencia(mensaje = "", titulo="Atención", descripcion=""):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
@@ -19,6 +21,7 @@ class Herramientas():
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
 
+    # muestra ventana de confirmación  con los datos indicados, y los botones de aceptar o cancelar.
     def ventanaConfirmacion(mensaje ="", titulo ="Atención", descripcion ="",descripcionExtendida = ""):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
@@ -33,21 +36,3 @@ class Herramientas():
         else:
             return False
 
-    def validarDni(dni):
-        resultado= False
-        if len(dni) == 9:
-            letra = dni[-1]
-            numeros = dni[0:8]
-            if numeros.isdigit():
-                letrasDni= 'TRWAGMYFPDXBNJZSQVHLCKE';
-                indiceLetra = int(numeros)%23
-                if letrasDni[indiceLetra] == letra.upper():
-                    resultado= True
-        return resultado
-
-    def formatearDni(dni):
-        dni = dni.upper()
-        if len(dni) > 9:
-            dni = dni.replace("-","")
-            dni = dni.replace(" ", "")
-        return dni

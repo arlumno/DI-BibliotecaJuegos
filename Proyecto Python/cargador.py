@@ -7,11 +7,11 @@ from acciones import Acciones
 
 class Cargador():
 
+    # carga todas las ventanas en variables globales
     def cargarComponentes():
         try:
             # cargar UI principal.
             var.wMain = Main()
-
             # cargar UIs adicionales.
             var.dSalir = DialogSalir()
             var.dJuego = DialogJuego()
@@ -37,7 +37,6 @@ class Cargador():
             uiMain.bExportarBD.clicked.connect(Acciones.exportarBD)
             uiMain.bImportarBD.clicked.connect(Acciones.importarBD)
             uiMain.bAddPropietario.clicked.connect(var.dAddPropietario.show)
-
             uiMain.lwPropietarios.itemDoubleClicked.connect(Acciones.eliminarPropietario)
 
             #Barra menu.
@@ -66,6 +65,20 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarEventos s% " % str(error))
 
+    # carga todos los datos en los campos de todas las ventanas
+    def cargarUI():
+        try:
+            #clasificado según datos cargados.
+            Cargador.cargarListadoJuegos()
+            Cargador.cargarUIGenero()
+            Cargador.cargarUIDificultades()
+            Cargador.cargarUIMinJugadores()
+            Cargador.cargarUIMaxJugadores()
+            Cargador.cargarUIPropietarios()
+        except Exception as error:
+            print("Cargador-> error cargarUI s% " % str(error))
+
+    #carga el listado en el QTableWidget
     def cargarListadoJuegos(listadoJuegos = None):
         try:
             if listadoJuegos is None:
@@ -96,16 +109,7 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarListadoJuegos s% " % str(error))
 
-    def cargarUI():#carga todos los datos en los campos de todas las ventanas
-        try:
-            Cargador.cargarListadoJuegos()
-            Cargador.cargarUIGenero()
-            Cargador.cargarUIDificultades()
-            Cargador.cargarUIMinJugadores()
-            Cargador.cargarUIMaxJugadores()
-            Cargador.cargarUIPropietarios()
-        except Exception as error:
-            print("Cargador-> error cargarUI s% " % str(error))
+
 
     def cargarUIDificultades():
         try:
@@ -171,7 +175,7 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarUIGenero s% " % str(error))
 
-
+    #carga la información de un juego en la ventana dJuego
     def cargarJuego(idJuego):
         try:
             juego = var.db.obtenerJuego(idJuego)
@@ -196,6 +200,7 @@ class Cargador():
         except Exception as error:
             print("Cargador-> error cargarJuego s% " % str(error))
 
+    #carga la información de un juego en la ventana dAddJuego
     def cargarEditarJuego(idJuego):
         try:
             juego = var.db.obtenerJuego(idJuego)
