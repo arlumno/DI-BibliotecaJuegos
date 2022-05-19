@@ -13,7 +13,7 @@ class Informes():
         var.configReport = {"rutaArchivoPdf":'listado_juegos.pdf',
                             "tituloInforme": "Listado de Juegos",
                             "autorInforme": "Armando Castro",
-                            "logoEmpresa": "recursos/logo_dados.png",
+                            "logoEmpresa": "logo.png",
                             "nombreEmpresa": "Asociacion Viguesa de juegos de mesa.",
                             "direccionEmpresa": "Avenida Galicia, 9999 - 36216 Vigo (Pontevedra)",
                             "telefonoEmpresa": "897 12 04 64"
@@ -50,13 +50,17 @@ class Informes():
             var.report.drawString(50,790,var.configReport['nombreEmpresa'])
             var.report.drawString(50,775,var.configReport['direccionEmpresa'])
             var.report.drawString(50,760,var.configReport['telefonoEmpresa'])
-            var.report.drawImage(var.configReport['logoEmpresa'], 455, 752,60,60)
+
+            if os.path.isfile(var.configReport['logoEmpresa']) :
+                var.report.drawImage(var.configReport['logoEmpresa'], 455, 752,60,60)
+
             Informes.subHeader()
 
         except Exception as error:
             print('Error reporcli header %s ' % str(error))
 
     def subHeader():
+
         var.report.line(45, 722, 525, 722)
         var.report.setFont("Helvetica", size=9)
         var.report.drawString(45, 710, 'Cod.')
@@ -67,6 +71,7 @@ class Informes():
         var.report.drawString(405, 710, "Propietario")
         var.report.drawString(475, 710, "Fecha Alta")
         var.report.line(45, 703, 525, 703)
+
     def body(listadoJuegos):
         try:
             i = 675

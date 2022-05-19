@@ -258,7 +258,14 @@ QComboBox, QLineEdit{
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbGenero"/>
+           <widget class="QComboBox" name="cbGenero">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -275,7 +282,14 @@ QComboBox, QLineEdit{
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbDificultad"/>
+           <widget class="QComboBox" name="cbDificultad">
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -307,7 +321,7 @@ QComboBox, QLineEdit{
              <widget class="QComboBox" name="cbMinJugadores">
               <property name="minimumSize">
                <size>
-                <width>40</width>
+                <width>35</width>
                 <height>0</height>
                </size>
               </property>
@@ -327,7 +341,7 @@ QComboBox, QLineEdit{
              <widget class="QComboBox" name="cbMaxJugadores">
               <property name="minimumSize">
                <size>
-                <width>40</width>
+                <width>35</width>
                 <height>0</height>
                </size>
               </property>
@@ -350,7 +364,14 @@ QComboBox, QLineEdit{
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbPropietario"/>
+           <widget class="QComboBox" name="cbPropietario">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
